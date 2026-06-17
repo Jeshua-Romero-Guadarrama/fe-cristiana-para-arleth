@@ -121,8 +121,28 @@
   }
   .theme-toggle:hover{color:var(--rouge);border-color:var(--gold);transform:rotate(-12deg)}
 
+  .nav-toggle{
+    display:none;flex:none;margin-left:auto;cursor:pointer;
+    background:transparent;border:1px solid var(--rule);color:var(--ink-soft);
+    font-family:'Spectral';font-size:.85rem;padding:7px 14px;border-radius:999px;
+    white-space:nowrap;transition:color .2s,border-color .2s;
+  }
+  .nav-toggle:hover{color:var(--rouge);border-color:var(--gold)}
+  @media (max-width:880px){
+    .topnav .inner{flex-wrap:wrap}
+    .nav-toggle{display:inline-flex;align-items:center;gap:6px}
+    .topnav nav{
+      order:3;flex-basis:100%;width:100%;display:none;
+      flex-direction:column;gap:0;overflow-y:auto;max-height:64vh;
+      margin-top:10px;border-top:1px solid var(--rule);
+    }
+    .topnav nav.open{display:flex}
+    .topnav nav a{padding:13px 2px;border-bottom:1px solid var(--rule);white-space:normal}
+    .topnav.on-cover nav{display:none}
+  }
+
   /* ---- PAGE / BOOK ---- */
-  .page{display:none;padding:114px 0 180px;min-height:100vh}
+  .page{display:none;padding:114px 0 210px;min-height:100vh}
   .page.active{display:block;animation:pageIn .5s ease}
   .page.cover.active{display:flex}
   @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -426,7 +446,7 @@
     .compare .views{grid-template-columns:1fr;gap:14px}
     .reason{gap:14px}
     .sola{padding:28px 22px}
-    .page{padding:102px 0 172px}
+    .page{padding:102px 0 198px}
     /* En móvil, el desenfoque cuesta rendimiento: lo quitamos y dejamos un fondo más sólido */
     .topnav,.pager{backdrop-filter:none;-webkit-backdrop-filter:none}
   }
@@ -463,7 +483,8 @@
 <div class="topnav" id="topnav">
   <div class="inner">
     <a class="brand" href="#inicio">El corazón de mi fe</a>
-    <nav aria-label="Secciones">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir el menú de secciones" aria-expanded="false">Secciones ▾</button>
+    <nav id="mainnav" aria-label="Secciones">
       <a href="#que-es">Qué es</a>
       <a href="#evangelio">El evangelio</a>
       <a href="#centro">Lo esencial</a>
@@ -999,7 +1020,16 @@
   var pgCount=document.getElementById('pgCount');
   var bar=document.getElementById('progress');
   var navLinks=Array.prototype.slice.call(document.querySelectorAll('.topnav nav a'));
+  var navToggle=document.getElementById('navToggle');
+  var mainnav=document.getElementById('mainnav');
   var current=0;
+
+  function closeMenu(){ mainnav.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); }
+  navToggle.addEventListener('click',function(){
+    var open=mainnav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded',open?'true':'false');
+  });
+  navLinks.forEach(function(a){ a.addEventListener('click',closeMenu); });
 
   function render(id){
     var i=order.indexOf(id); if(i<0)i=0;
