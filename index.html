@@ -38,7 +38,7 @@
     --nav-bg:rgba(246,241,231,.92);
     --accent:#9e3b30;
     --accent-on:var(--accent);
-    --maxw:720px;
+    --maxw:650px;
   }
   html[data-theme="dark"]{
     --ink:#ece2d2;
@@ -53,7 +53,7 @@
     --accent-on:color-mix(in srgb, var(--accent) 52%, #efe5d2);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -68,8 +68,8 @@
       radial-gradient(circle at 20% 30%, rgba(176,132,49,0.04), transparent 55%),
       radial-gradient(circle at 85% 70%, rgba(158,59,48,0.035), transparent 50%);
   }
-  p{text-wrap:pretty}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:28px;padding-right:28px}
+  p{text-wrap:pretty;overflow-wrap:break-word}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:clamp(26px,6vw,34px);padding-right:clamp(26px,6vw,34px)}
 
   /* ---- SKIP LINK ---- */
   .skip{
@@ -151,7 +151,7 @@
   /* ---- COVER ---- */
   .page.cover{
     flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    padding:60px 28px;position:relative;
+    padding:60px clamp(26px,6vw,34px);position:relative;
     background:
       radial-gradient(circle at 16% 22%, color-mix(in srgb,#b5642a 18%,transparent), transparent 46%),
       radial-gradient(circle at 84% 24%, color-mix(in srgb,#2f7d8a 16%,transparent), transparent 46%),
@@ -164,8 +164,8 @@
   }
   .cover h1{
     font-family:'Fraunces';font-weight:400;
-    font-size:clamp(3rem,11vw,6.2rem);
-    line-height:.98;letter-spacing:-.02em;color:var(--ink);
+    font-size:clamp(2.6rem,10.5vw,6.2rem);
+    line-height:1;letter-spacing:-.02em;color:var(--ink);
     opacity:0;animation:rise 1s .4s ease forwards;
   }
   .cover h1 em{font-style:italic;color:var(--rouge-deep)}
@@ -193,7 +193,7 @@
   .btn.ghost:hover{background:color-mix(in srgb,var(--rouge) 12%,transparent)}
 
   /* ---- INDEX / TABLE OF CONTENTS ---- */
-  .toc{max-width:580px;margin:0 auto;padding:8px 28px 24px}
+  .toc{max-width:580px;margin:0 auto;padding:8px clamp(26px,6vw,34px) 24px}
   .toc h2{
     font-family:'Fraunces';font-style:italic;font-weight:400;font-size:1.6rem;
     color:var(--rouge);text-align:center;margin-bottom:6px;letter-spacing:.02em;
@@ -241,7 +241,7 @@
   .rule-short{width:64px;height:2px;background:var(--rouge);border:0;margin:30px 0}
 
   p{margin-bottom:20px}
-  p.body{max-width:62ch}
+  p.body{max-width:100%}
   .belief{margin:46px 0}
   .belief h3{
     font-family:'Fraunces';font-weight:500;font-size:1.4rem;
@@ -395,7 +395,7 @@
   .reason .rt p{font-size:.98rem;color:var(--ink-soft);margin:0;line-height:1.55}
 
   /* ---- INVITATION / CLOSE ---- */
-  .invite{text-align:center;max-width:640px;margin:0 auto;padding:10px 28px 30px}
+  .invite{text-align:center;max-width:640px;margin:0 auto;padding:10px clamp(26px,6vw,34px) 30px}
   .invite .eyebrow{font-family:'Spectral';font-style:italic;color:var(--rouge);font-size:1rem;margin-bottom:18px}
   .invite h2{
     font-family:'Fraunces';font-weight:400;
@@ -450,9 +450,11 @@
     .ledger .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}
     .compare .views{grid-template-columns:1fr;gap:14px}
     .reason{gap:14px}
-    .sola{padding:28px 22px}
+    .sola{padding:26px 20px}
+    .sola::before{font-size:5.4rem;right:8px}
+    .verse{padding-left:20px}
+    .verse.feature{padding:34px 18px}
     .page{padding-top:102px;padding-bottom:200px}
-    .wrap{padding-left:30px;padding-right:30px}
     /* En móvil, el desenfoque cuesta rendimiento: lo quitamos y dejamos un fondo más sólido */
     .topnav,.pager{backdrop-filter:none;-webkit-backdrop-filter:none}
   }
