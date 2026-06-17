@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El corazón de la fe cristiana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2723;
+    --ink-soft:#5c544a;
+    --paper:#f6f1e7;
+    --paper-deep:#efe7d6;
+    --rouge:#9e3b30;
+    --rouge-deep:#7a2c24;
+    --gold:#b08431;
+    --rule:#d8cdb6;
+    --maxw:720px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',Georgia,serif;
+    font-weight:400;
+    line-height:1.75;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(176,132,49,0.035), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(158,59,48,0.03), transparent 50%);
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---- COVER ---- */
+  .cover{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:60px 28px;position:relative;
+  }
+  .cover .eyebrow{
+    font-family:'Spectral';font-style:italic;font-size:1.05rem;
+    letter-spacing:.04em;color:var(--rouge);margin-bottom:30px;
+    opacity:0;animation:rise .9s .2s ease forwards;
+  }
+  .cover h1{
+    font-family:'Fraunces';font-weight:400;
+    font-size:clamp(3rem,11vw,6.2rem);
+    line-height:.98;letter-spacing:-.02em;color:var(--ink);
+    opacity:0;animation:rise 1s .4s ease forwards;
+  }
+  .cover h1 em{font-style:italic;color:var(--rouge-deep)}
+  .ornament{
+    margin:38px 0;width:140px;height:auto;
+    opacity:0;animation:rise 1s .75s ease forwards;
+  }
+  .cover .dedication{
+    max-width:340px;font-style:italic;color:var(--ink-soft);
+    font-size:1.05rem;line-height:1.6;
+    opacity:0;animation:rise 1s 1s ease forwards;
+  }
+  .scrollcue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    font-family:'Spectral';font-size:.78rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);
+    opacity:0;animation:fade 1.2s 1.6s ease forwards;
+  }
+  .scrollcue::after{
+    content:"";display:block;width:1px;height:34px;margin:12px auto 0;
+    background:linear-gradient(var(--gold),transparent);
+  }
+
+  /* ---- SECTION SCAFFOLD ---- */
+  .chapter{padding:78px 0 20px}
+  .chapter-head{margin-bottom:42px}
+  .num{
+    font-family:'Fraunces';font-style:italic;font-weight:400;
+    font-size:1rem;color:var(--gold);letter-spacing:.05em;
+    display:block;margin-bottom:10px;
+  }
+  .chapter h2{
+    font-family:'Fraunces';font-weight:400;
+    font-size:clamp(2rem,6vw,3rem);line-height:1.05;
+    letter-spacing:-.015em;color:var(--ink);
+  }
+  .chapter h2 em{font-style:italic;color:var(--rouge-deep)}
+  .lede{font-size:1.12rem;color:var(--ink-soft);margin-top:18px;max-width:56ch}
+  .rule{height:1px;background:var(--rule);border:0;margin:0}
+  .rule-short{width:64px;height:2px;background:var(--rouge);border:0;margin:30px 0}
+
+  p{margin-bottom:18px}
+  p.body{max-width:60ch}
+  .belief{margin:34px 0}
+  .belief h3{
+    font-family:'Fraunces';font-weight:500;font-size:1.4rem;
+    color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;
+  }
+  .belief h3 .marker{color:var(--rouge);font-style:italic;margin-right:.4em}
+
+  /* ---- VERSE ---- */
+  .verse{
+    margin:26px 0;padding:8px 0 8px 26px;
+    border-left:2px solid var(--gold);
+    position:relative;
+  }
+  .verse .text{
+    font-family:'Fraunces';font-style:italic;font-weight:400;
+    font-size:1.28rem;line-height:1.5;color:var(--ink);
+  }
+  .verse .ref{
+    display:block;margin-top:12px;font-family:'Spectral';
+    font-style:normal;font-size:.85rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--rouge);
+  }
+  .verse.feature{
+    border-left:none;text-align:center;padding:40px 20px;margin:46px 0;
+  }
+  .verse.feature .text{font-size:clamp(1.5rem,4.2vw,2rem);line-height:1.45}
+  .verse.feature .text::before{
+    content:"";display:block;width:46px;height:1px;
+    background:var(--gold);margin:0 auto 26px;
+  }
+  .verse.feature .ref{margin-top:22px}
+
+  /* ---- DROP CAP ---- */
+  .dropcap::first-letter{
+    font-family:'Fraunces';font-weight:500;
+    float:left;font-size:4.1rem;line-height:.8;
+    padding:8px 14px 0 0;color:var(--rouge-deep);
+  }
+
+  /* ---- TWO-COLUMN LIFE ---- */
+  .ledger{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    margin:32px 0;border:1px solid var(--rule);
+    background:var(--paper-deep);
+  }
+  .ledger .col{padding:26px 24px}
+  .ledger .col:first-child{border-right:1px solid var(--rule)}
+  .ledger .col h4{
+    font-family:'Spectral';font-style:italic;font-size:1.05rem;
+    color:var(--rouge);margin-bottom:18px;font-weight:500;
+  }
+  .ledger ul{list-style:none}
+  .ledger li{
+    font-size:.98rem;line-height:1.5;padding:9px 0 9px 18px;
+    position:relative;border-top:1px solid rgba(216,205,182,.6);
+  }
+  .ledger li:first-child{border-top:none}
+  .ledger li::before{
+    content:"";position:absolute;left:0;top:.95em;
+    width:5px;height:5px;border-radius:50%;background:var(--gold);
+  }
+  .ledger li .cite{display:block;font-size:.78rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
+
+  /* ---- NUANCE CARD ---- */
+  .nuance{
+    background:var(--paper-deep);border:1px solid var(--rule);
+    padding:26px 28px;margin:28px 0;
+  }
+  .nuance h4{
+    font-family:'Fraunces';font-weight:500;font-size:1.25rem;
+    margin-bottom:6px;color:var(--ink);
+  }
+  .nuance .twosides{display:grid;gap:16px;margin-top:14px}
+  .nuance .side{font-size:.98rem;line-height:1.55}
+  .nuance .side b{font-style:italic;font-weight:500;color:var(--rouge-deep)}
+
+  /* ---- COMPARISON ---- */
+  .compare{margin:30px 0}
+  .compare .row{
+    display:grid;grid-template-columns:1fr;gap:0;
+    border-top:1px solid var(--rule);padding:22px 0;
+  }
+  .compare .row:last-child{border-bottom:1px solid var(--rule)}
+  .compare .topic{
+    font-family:'Fraunces';font-weight:500;font-size:1.15rem;
+    color:var(--ink);margin-bottom:14px;
+  }
+  .compare .views{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .compare .view .tag{
+    font-family:'Spectral';font-style:italic;font-size:.82rem;
+    letter-spacing:.06em;color:var(--rouge);display:block;margin-bottom:5px;
+  }
+  .compare .view p{font-size:.95rem;line-height:1.5;margin:0;color:var(--ink-soft)}
+  .shared-note{
+    font-style:italic;color:var(--ink-soft);font-size:1.05rem;
+    max-width:58ch;margin-bottom:8px;
+  }
+
+  /* ---- UNIQUE LIST ---- */
+  .reasons{margin:30px 0;counter-reset:r}
+  .reason{
+    display:flex;gap:22px;padding:22px 0;
+    border-top:1px solid var(--rule);align-items:baseline;
+  }
+  .reason:last-child{border-bottom:1px solid var(--rule)}
+  .reason .rn{
+    counter-increment:r;font-family:'Fraunces';font-style:italic;
+    font-size:1.5rem;color:var(--gold);min-width:34px;
+  }
+  .reason .rn::before{content:counter(r,decimal)}
+  .reason .rt h4{font-family:'Fraunces';font-weight:500;font-size:1.2rem;margin-bottom:4px}
+  .reason .rt p{font-size:.98rem;color:var(--ink-soft);margin:0;line-height:1.55}
+
+  /* ---- INVITATION / CLOSE ---- */
+  .invite{
+    text-align:center;padding:70px 28px 90px;
+    background:var(--paper-deep);
+    border-top:1px solid var(--rule);margin-top:70px;
+  }
+  .invite .eyebrow{
+    font-family:'Spectral';font-style:italic;color:var(--rouge);
+    font-size:1rem;margin-bottom:18px;
+  }
+  .invite h2{
+    font-family:'Fraunces';font-weight:400;
+    font-size:clamp(1.8rem,5.5vw,2.8rem);line-height:1.1;
+    max-width:18ch;margin:0 auto 26px;
+  }
+  .invite p{max-width:46ch;margin:0 auto 30px;color:var(--ink-soft)}
+  .signoff{
+    font-family:'Fraunces';font-style:italic;font-size:1.25rem;
+    color:var(--rouge-deep);margin-top:40px;
+  }
+  .colophon{
+    text-align:center;padding:30px;font-size:.8rem;
+    color:var(--ink-soft);font-style:italic;letter-spacing:.02em;
+  }
+
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes fade{to{opacity:1}}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:600px){
+    body{font-size:17px}
+    .ledger{grid-template-columns:1fr}
+    .ledger .col:first-child{border-right:none;border-bottom:1px solid var(--rule)}
+    .compare .views{grid-template-columns:1fr;gap:14px}
+    .reason{gap:14px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .cover .eyebrow,.cover h1,.ornament,.cover .dedication,.scrollcue{opacity:1}
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<header class="cover">
+  <span class="eyebrow">una carta sobre lo que creo</span>
+  <h1>El corazón<br>de la fe<br><em>cristiana</em></h1>
+  <svg class="ornament" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M2 15 H56" stroke="#b08431" stroke-width="1"/>
+    <path d="M138 15 H84" stroke="#b08431" stroke-width="1"/>
+    <path d="M70 4 C74 9 74 21 70 26 C66 21 66 9 70 4Z" fill="#9e3b30"/>
+    <circle cx="70" cy="15" r="2.4" fill="#b08431"/>
+    <circle cx="60" cy="15" r="1.4" fill="#b08431"/>
+    <circle cx="80" cy="15" r="1.4" fill="#b08431"/>
+  </svg>
+  <p class="dedication">Quise reunir en un solo lugar aquello que sostiene mi vida, para poder compartirlo contigo.</p>
+  <span class="scrollcue">sigue leyendo</span>
+</header>
+
+<!-- 1. EN QUÉ CREEMOS -->
+<section class="chapter wrap reveal">
+  <div class="chapter-head">
+    <span class="num">primera parte</span>
+    <h2>Lo que está <em>en el centro</em></h2>
+    <p class="lede">El cristianismo no comienza con reglas ni con una institución, sino con una persona: Jesús. Todo lo demás nace de ahí.</p>
+  </div>
+
+  <div class="belief">
+    <h3><span class="marker">i.</span>La Biblia es la voz de Dios</h3>
+    <p class="body">Es nuestra guía y autoridad: no un libro de historia cualquiera, sino la manera en que Dios se da a conocer.</p>
+    <div class="verse">
+      <span class="text">Toda la Escritura es inspirada por Dios, y útil para enseñar, para corregir y para instruir en justicia.</span>
+      <span class="ref">2 Timoteo 3:16</span>
+    </div>
+  </div>
+
+  <div class="belief">
+    <h3><span class="marker">ii.</span>La salvación es un regalo</h3>
+    <p class="body">No se gana siendo lo bastante bueno. Se recibe confiando en lo que Jesús ya hizo. Eso libera del peso de tener que merecerlo todo.</p>
+    <div class="verse">
+      <span class="text">Por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras.</span>
+      <span class="ref">Efesios 2:8–9</span>
+    </div>
+  </div>
+
+  <div class="belief">
+    <h3><span class="marker">iii.</span>Jesús es el camino a Dios</h3>
+    <p class="body">No uno entre muchos, sino el puente que Dios mismo tendió hacia nosotros.</p>
+    <div class="verse">
+      <span class="text">Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.</span>
+      <span class="ref">Juan 14:6</span>
+    </div>
+  </div>
+
+  <div class="belief">
+    <h3><span class="marker">iv.</span>Nacer de nuevo</h3>
+    <p class="body">Seguir a Cristo cambia a una persona desde dentro. No es volverse religioso: es empezar de nuevo.</p>
+    <div class="verse">
+      <span class="text">El que no naciere de nuevo, no puede ver el reino de Dios.</span>
+      <span class="ref">Juan 3:3</span>
+    </div>
+  </div>
+
+  <div class="belief">
+    <h3><span class="marker">v.</span>Un Dios en tres personas</h3>
+    <p class="body">Un solo Dios que se nos revela como Padre, Hijo y Espíritu Santo: cercano, presente y vivo.</p>
+  </div>
+</section>
+
+<!-- 2. CÓMO VIVIMOS -->
+<section class="chapter wrap reveal">
+  <div class="chapter-head">
+    <span class="num">segunda parte</span>
+    <h2>Cómo se vive <em>esta fe</em></h2>
+    <p class="lede">Vivir bien no es una lista para ganarse el cielo: es la respuesta natural de quien se sabe amado. Aun así, la Biblia da una dirección clara.</p>
+  </div>
+
+  <div class="ledger">
+    <div class="col">
+      <h4>Hacia lo que se camina</h4>
+      <ul>
+        <li>Amar a Dios y al prójimo<span class="cite">Mateo 22:37–39</span></li>
+        <li>Orar y leer la Biblia<span class="cite">1 Tesalonicenses 5:17</span></li>
+        <li>Acompañarse entre creyentes<span class="cite">Hebreos 10:25</span></li>
+        <li>Perdonar y ser bondadosos<span class="cite">Efesios 4:32</span></li>
+        <li>Cuidar el cuerpo como templo<span class="cite">1 Corintios 6:19–20</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>De lo que uno se aparta</h4>
+      <ul>
+        <li>Poner algo por encima de Dios<span class="cite">Éxodo 20:3–4</span></li>
+        <li>La inmoralidad sexual<span class="cite">1 Corintios 6:18</span></li>
+        <li>La embriaguez y los excesos<span class="cite">Efesios 5:18</span></li>
+        <li>La mentira y el robo<span class="cite">Efesios 4:25</span></li>
+        <li>El odio, la envidia, la amargura<span class="cite">Gálatas 5:19–21</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:28px">Hay también costumbres concretas sobre las que los cristianos sinceros no siempre coinciden. Vale la pena mirarlas con honestidad, mostrando las dos lecturas.</p>
+
+  <div class="nuance">
+    <h4>Sobre comer sangre de animales</h4>
+    <div class="twosides">
+      <p class="side"><b>Quienes lo evitan</b> se apoyan en una instrucción dada a los primeros cristianos: <em>«que os abstengáis de lo sacrificado a ídolos, de sangre, de ahogado y de fornicación»</em> (Hechos 15:29).</p>
+      <p class="side"><b>Otros entienden</b> que aquella indicación buscaba la sana convivencia entre creyentes de orígenes distintos en esa época, más que una prohibición permanente.</p>
+    </div>
+  </div>
+
+  <div class="nuance">
+    <h4>Sobre los tatuajes</h4>
+    <div class="twosides">
+      <p class="side"><b>Quienes los evitan</b> citan: <em>«No haréis ninguna figura grabada en vuestro cuerpo»</em> (Levítico 19:28).</p>
+      <p class="side"><b>Otros señalan</b> que esa ley estaba ligada a ritos paganos de aquel tiempo, y que cuenta más el corazón que lo externo. Suele dejarse a la conciencia de cada quien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE VERSE -->
+<section class="wrap">
+  <div class="verse feature reveal">
+    <span class="text">Cuidaos de cumplir vuestra justicia delante de los hombres para ser vistos de ellos. El amor verdadero no busca aplauso.</span>
+    <span class="ref">a partir de Mateo 6:1</span>
+  </div>
+</section>
+
+<!-- 3. DIFERENCIAS CON EL CATOLICISMO -->
+<section class="chapter wrap reveal">
+  <div class="chapter-head">
+    <span class="num">tercera parte</span>
+    <h2>Cerca del <em>catolicismo</em>, y a la vez distinto</h2>
+  </div>
+  <p class="shared-note">Comparten más de lo que separa: ambos creen en Dios, en Jesús como Salvador, en la Trinidad y en la Biblia. Las diferencias están sobre todo en la autoridad, la salvación y la práctica. Aquí, con respeto para ambos lados.</p>
+
+  <div class="compare">
+    <div class="row">
+      <div class="topic">¿Dónde está la autoridad?</div>
+      <div class="views">
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Solo la Biblia es la autoridad final.</p></div>
+        <div class="view"><span class="tag">mirada católica</span><p>La Biblia junto con la Tradición y el Magisterio de la Iglesia.</p></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="topic">¿Cómo se recibe la salvación?</div>
+      <div class="views">
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Por gracia mediante la fe, como un regalo.</p></div>
+        <div class="view"><span class="tag">mirada católica</span><p>Por la gracia, recibida mediante la fe y los sacramentos.</p></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="topic">María y los santos</div>
+      <div class="views">
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Se honra a María, pero se ora solo a Dios.</p></div>
+        <div class="view"><span class="tag">mirada católica</span><p>Se honra a María y se pide la intercesión de los santos.</p></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="topic">El liderazgo de la Iglesia</div>
+      <div class="views">
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Cristo es la única cabeza; no hay un líder humano supremo.</p></div>
+        <div class="view"><span class="tag">mirada católica</span><p>El Papa, sucesor de Pedro, es la cabeza visible.</p></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="topic">La confesión</div>
+      <div class="views">
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Se confiesa directamente a Dios.</p></div>
+        <div class="view"><span class="tag">mirada católica</span><p>Se confiesa a Dios a través del sacerdote.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verse">
+    <span class="text">Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre.</span>
+    <span class="ref">1 Timoteo 2:5</span>
+  </div>
+</section>
+
+<!-- 4. POR QUÉ CRISTO ES ÚNICO -->
+<section class="chapter wrap reveal">
+  <div class="chapter-head">
+    <span class="num">cuarta parte</span>
+    <h2>Por qué <em>Cristo</em> lo cambia todo</h2>
+    <p class="lede">Más allá de cualquier tradición, lo que hace única a esta fe es Él mismo.</p>
+  </div>
+
+  <div class="reasons">
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>Es una relación, no un esfuerzo</h4><p>No se trata de ganar el favor de Dios, sino de recibir su amor.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>Dios se acercó primero</h4><p>En Cristo, Dios mismo vino a vivir entre nosotros, y conoció el dolor humano por dentro.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>Ofrece perdón de verdad</h4><p>La cruz no deja deudas pendientes para quien la recibe.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>La vida eterna es certeza</h4><p>No un premio incierto al final, sino una promesa presente.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>Resucitó</h4><p>Toda la fe descansa en algo concreto: Jesús venció a la muerte.</p></div></div>
+  </div>
+
+  <div class="verse feature reveal">
+    <span class="text">De tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna.</span>
+    <span class="ref">Juan 3:16</span>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section class="invite reveal">
+  <p class="eyebrow">y al final, una sola pregunta</p>
+  <h2>¿Te gustaría conocer a Jesús de manera personal?</h2>
+  <p>No hace falta ser perfecto ni tener todas las respuestas. Basta un corazón abierto.</p>
+  <hr class="rule-short" style="margin-left:auto;margin-right:auto">
+  <div class="verse" style="border-left:none;display:inline-block;text-align:center;max-width:46ch">
+    <span class="text">He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él.</span>
+    <span class="ref">Apocalipsis 3:20</span>
+  </div>
+  <p class="signoff">Con cariño, para ti.</p>
+</section>
+
+<div class="colophon">Citas según la versión Reina-Valera 1960.</div>
+
+<script>
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
