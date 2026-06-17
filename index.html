@@ -2,27 +2,28 @@
 <html lang="es" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Una carta sobre la fe cristiana, escrita para Arleth: qué significa ser cristiano, el evangelio y las Cinco Solas explicadas con profundidad.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Una carta sobre la fe cristiana, escrita para Arleth: qué significa ser cristiano, el evangelio y las Cinco Solas explicadas con cariño.">
 <meta name="author" content="Jeshua">
 <meta name="theme-color" content="#9e3b30">
-<title>El corazón de la fe cristiana — para Arleth</title>
+<meta name="format-detection" content="telephone=no">
+<title>El corazón de mi fe cristiana · para Arleth</title>
 <!-- Aplica el tema guardado cuanto antes para evitar parpadeos -->
 <script>(function(){try{var t=localStorage.getItem('tema-fe')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 <!-- Vista previa al compartir el enlace -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
-<meta property="og:site_name" content="El corazón de la fe cristiana">
-<meta property="og:title" content="El corazón de la fe cristiana — para Arleth">
-<meta property="og:description" content="Una carta sobre la fe cristiana: qué significa ser cristiano, el evangelio y las Cinco Solas, explicadas con profundidad y cariño.">
+<meta property="og:site_name" content="El corazón de mi fe cristiana">
+<meta property="og:title" content="El corazón de mi fe cristiana · para Arleth">
+<meta property="og:description" content="Una carta sobre la fe cristiana: qué significa ser cristiano, el evangelio y las Cinco Solas, explicadas con cariño.">
 <meta property="og:url" content="https://jeshua-romero-guadarrama.github.io/fe-cristiana-para-arleth/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="El corazón de la fe cristiana — para Arleth">
-<meta name="twitter:description" content="Qué significa ser cristiano, el evangelio y las Cinco Solas, con profundidad y cariño.">
+<meta name="twitter:title" content="El corazón de mi fe cristiana · para Arleth">
+<meta name="twitter:description" content="Qué significa ser cristiano, el evangelio y las Cinco Solas, con cariño.">
 <link rel="canonical" href="https://jeshua-romero-guadarrama.github.io/fe-cristiana-para-arleth/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f6f1e7'/%3E%3Cpath d='M14 6h4v8h8v4h-8v8h-4v-8H6v-4h8z' fill='%239e3b30'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -34,7 +35,7 @@
     --rouge-deep:#7a2c24;
     --gold:#b08431;
     --rule:#d8cdb6;
-    --nav-bg:rgba(246,241,231,.85);
+    --nav-bg:rgba(246,241,231,.92);
     --accent:#9e3b30;
     --accent-on:var(--accent);
     --maxw:720px;
@@ -48,11 +49,11 @@
     --rouge-deep:#e9a99a;
     --gold:#cfa959;
     --rule:#3a332b;
-    --nav-bg:rgba(27,24,21,.88);
+    --nav-bg:rgba(27,24,21,.94);
     --accent-on:color-mix(in srgb, var(--accent) 52%, #efe5d2);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -61,11 +62,13 @@
     line-height:1.75;
     font-size:18px;
     -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
     transition:background .4s ease,color .4s ease;
     background-image:
       radial-gradient(circle at 20% 30%, rgba(176,132,49,0.04), transparent 55%),
       radial-gradient(circle at 85% 70%, rgba(158,59,48,0.035), transparent 50%);
   }
+  p{text-wrap:pretty}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
   /* ---- SKIP LINK ---- */
@@ -88,6 +91,7 @@
     background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid var(--rule);
     transition:background .4s ease,border-color .4s ease;
+    padding-top:env(safe-area-inset-top);
   }
   .topnav .inner{
     max-width:1040px;margin:0 auto;padding:10px 18px;
@@ -113,12 +117,12 @@
     flex:none;width:36px;height:36px;border-radius:50%;cursor:pointer;
     background:transparent;border:1px solid var(--rule);color:var(--ink-soft);
     font-size:1rem;line-height:1;display:flex;align-items:center;justify-content:center;
-    transition:color .2s,border-color .2s,transform .2s,background .2s;
+    transition:color .2s,border-color .2s,transform .2s;
   }
   .theme-toggle:hover{color:var(--rouge);border-color:var(--gold);transform:rotate(-12deg)}
 
   /* ---- PAGE / BOOK ---- */
-  .page{display:none;padding:90px 0 116px;min-height:100vh}
+  .page{display:none;padding:90px 0 172px;min-height:100vh}
   .page.active{display:block;animation:pageIn .5s ease}
   .page.cover.active{display:flex}
   @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -149,11 +153,11 @@
     opacity:0;animation:rise 1s .75s ease forwards;
   }
   .cover .dedication{
-    max-width:380px;font-style:italic;color:var(--ink-soft);
+    max-width:390px;font-style:italic;color:var(--ink-soft);
     font-size:1.05rem;line-height:1.6;
     opacity:0;animation:rise 1s 1s ease forwards;
   }
-  .cover .dedication b{color:var(--rouge-deep);font-weight:500}
+  .cover .dedication b{color:var(--rouge-deep);font-weight:500;font-style:normal}
   .cta{
     display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:36px;
     opacity:0;animation:rise 1s 1.25s ease forwards;
@@ -194,6 +198,10 @@
   /* ---- SECTION SCAFFOLD ---- */
   .chapter{padding:0}
   .chapter-head{margin-bottom:42px}
+  .motif{
+    display:block;width:46px;height:46px;color:var(--accent-on);margin-bottom:20px;
+    stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+  }
   .num{
     font-family:'Fraunces';font-style:italic;font-weight:400;
     font-size:1rem;color:var(--accent-on);letter-spacing:.05em;
@@ -317,12 +325,24 @@
   }
   .ledger li .cite{display:block;font-size:.78rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
 
-  /* ---- NUANCE CARD ---- */
-  .nuance{background:var(--paper-deep);border:1px solid var(--rule);padding:26px 28px;margin:28px 0}
-  .nuance h4{font-family:'Fraunces';font-weight:500;font-size:1.25rem;margin-bottom:6px;color:var(--ink)}
-  .nuance .twosides{display:grid;gap:16px;margin-top:14px}
-  .nuance .side{font-size:.98rem;line-height:1.55}
-  .nuance .side b{font-style:italic;font-weight:500;color:var(--accent-on)}
+  /* ---- ACCORDION (desplegables) ---- */
+  .acc-group{margin:30px 0;border-top:1px solid var(--rule)}
+  .acc{border-bottom:1px solid var(--rule)}
+  .acc>summary{
+    cursor:pointer;list-style:none;padding:17px 4px;
+    font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--accent-on);
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+  }
+  .acc>summary::-webkit-details-marker{display:none}
+  .acc>summary::after{
+    content:"+";font-family:'Fraunces';font-size:1.4rem;color:var(--ink-soft);
+    transition:transform .25s ease;flex:none;line-height:1;
+  }
+  .acc[open]>summary::after{transform:rotate(45deg)}
+  .acc .acc-body{padding:0 4px 18px;color:var(--ink-soft);font-size:1rem;line-height:1.65}
+  .acc .acc-body .side{margin-bottom:12px}
+  .acc .acc-body .side b{font-style:italic;font-weight:500;color:var(--accent-on)}
+  .acc[open]>summary{color:var(--rouge-deep)}
 
   /* ---- COMPARISON ---- */
   .compare{margin:30px 0}
@@ -348,11 +368,6 @@
   .reason .rn::before{content:counter(r,decimal)}
   .reason .rt h4{font-family:'Fraunces';font-weight:500;font-size:1.2rem;margin-bottom:4px}
   .reason .rt p{font-size:.98rem;color:var(--ink-soft);margin:0;line-height:1.55}
-
-  /* ---- GLOSSARY ---- */
-  .glossary{margin:30px 0}
-  .glossary dt{font-family:'Fraunces';font-weight:500;font-size:1.18rem;color:var(--accent-on);margin-top:22px}
-  .glossary dd{font-size:1rem;color:var(--ink-soft);margin:5px 0 0;max-width:60ch;line-height:1.6}
 
   /* ---- INVITATION / CLOSE ---- */
   .invite{text-align:center;max-width:640px;margin:0 auto;padding:10px 28px 30px}
@@ -381,7 +396,8 @@
 
   /* ---- PAGER ---- */
   .pager{
-    position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:110;
+    position:fixed;left:50%;bottom:18px;bottom:calc(18px + env(safe-area-inset-bottom));
+    transform:translateX(-50%);z-index:110;
     display:flex;align-items:center;gap:4px;
     background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border:1px solid var(--rule);border-radius:999px;padding:5px 7px;
@@ -410,7 +426,9 @@
     .compare .views{grid-template-columns:1fr;gap:14px}
     .reason{gap:14px}
     .sola{padding:28px 22px}
-    .page{padding:84px 0 110px}
+    .page{padding:84px 0 168px}
+    /* En móvil, el desenfoque cuesta rendimiento: lo quitamos y dejamos un fondo más sólido */
+    .topnav,.pager{backdrop-filter:none;-webkit-backdrop-filter:none}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -421,16 +439,17 @@
 
   /* ---- ACCESSIBILITY & SELECTION ---- */
   ::selection{background:color-mix(in srgb,var(--rouge) 22%,transparent);color:var(--ink)}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--rouge);outline-offset:3px;border-radius:4px}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--rouge);outline-offset:3px;border-radius:4px}
 
-  /* ---- PRINT: muestra todo de corrido ---- */
+  /* ---- PRINT: muestra todo de corrido y abre los desplegables ---- */
   @media print{
     .topnav,.progress,.pager,.theme-toggle,.skip,.cta{display:none!important}
     html[data-theme]{--ink:#000;--ink-soft:#333;--paper:#fff;--paper-deep:#fff}
     body{background:#fff;color:#000;font-size:11pt}
     .page{display:block!important;min-height:0;padding:14px 0;animation:none!important}
     .cover{min-height:0;background:none;padding:0 0 18px}
-    .sola,.nuance,.ledger,.prayer,.verse,.belief,.reason,.arc .beat{break-inside:avoid}
+    details>*{display:block!important}
+    .sola,.prayer,.verse,.belief,.reason,.arc .beat,.acc{break-inside:avoid}
     a,button{color:inherit}
   }
 </style>
@@ -443,7 +462,7 @@
 <!-- TOP NAV -->
 <div class="topnav" id="topnav">
   <div class="inner">
-    <a class="brand" href="#inicio">El corazón de la fe</a>
+    <a class="brand" href="#inicio">El corazón de mi fe</a>
     <nav aria-label="Secciones">
       <a href="#que-es">Qué es</a>
       <a href="#evangelio">El evangelio</a>
@@ -464,7 +483,7 @@
 <!-- PAGE 0 · PORTADA -->
 <header class="page cover active" id="inicio">
   <span class="eyebrow">una carta sobre lo que creo</span>
-  <h1>El corazón<br>de la fe<br><em>cristiana</em></h1>
+  <h1>El corazón<br>de mi fe<br><em>cristiana</em></h1>
   <svg class="ornament" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M2 15 H56" stroke="#b08431" stroke-width="1"/>
     <path d="M138 15 H84" stroke="#b08431" stroke-width="1"/>
@@ -473,7 +492,7 @@
     <circle cx="60" cy="15" r="1.4" fill="#b08431"/>
     <circle cx="80" cy="15" r="1.4" fill="#b08431"/>
   </svg>
-  <p class="dedication">Para <b>Arleth</b>.<br>Quise reunir en un solo lugar aquello que sostiene mi vida, para poder compartirlo contigo, sin prisa y con cariño.</p>
+  <p class="dedication">Para <b>mi amada Arleth</b>.<br>Quise reunir en un solo lugar aquello que sostiene mi vida, para poder compartirlo contigo, con cariño.</p>
   <div class="cta">
     <button class="btn primary" data-go="que-es">Comenzar a leer</button>
     <button class="btn ghost" data-go="indice">Ver el índice</button>
@@ -484,7 +503,7 @@
 <section class="page" id="indice" aria-label="Índice">
   <nav class="toc">
     <h2>Lo que encontrarás aquí</h2>
-    <p class="meta">una lectura pausada · unos 12 minutos</p>
+    <p class="meta">una lectura pausada</p>
     <ol>
       <li><a href="#que-es"><span class="t-title">Qué es ser cristiano</span></a></li>
       <li><a href="#evangelio"><span class="t-title">El gran relato: el evangelio</span></a></li>
@@ -502,13 +521,14 @@
 <!-- PAGE 2 · QUÉ ES SER CRISTIANO -->
 <section class="page chapter wrap" id="que-es" style="--accent:#b5642a">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C7 17 3.5 13.7 3.5 9.6 3.5 7 5.4 5.2 7.8 5.2c1.7 0 3.2 1 4.2 2.6 1-1.6 2.5-2.6 4.2-2.6 2.4 0 4.3 1.8 4.3 4.4 0 4.1-3.5 7.4-8.5 10.9z"/></svg>
     <span class="num">para empezar</span>
     <h2>¿Qué es <em>ser cristiano</em>?</h2>
-    <p class="lede">Antes de hablar de doctrinas, vale la pena decir algo sencillo: ser cristiano no es, en el fondo, pertenecer a una religión. Es conocer a una persona.</p>
+    <p class="lede">Antes de hablar de doctrinas quiero decirte algo sencillo. Ser cristiano no es, en el fondo, pertenecer a una religión, sino conocer a una persona.</p>
   </div>
-  <p class="body dropcap">La palabra «cristiano» nació como un apodo. A los primeros seguidores de Jesús, en la ciudad de Antioquía, la gente empezó a llamarlos así porque hablaban todo el tiempo de <em>Cristo</em> (Hechos 11:26). No eran «los de las reglas» ni «los del templo»: eran «los de Cristo». Y eso sigue siendo lo esencial.</p>
-  <p class="body">Un cristiano es alguien que reconoce dos cosas a la vez. Primero, que por sí mismo no puede salvar su propia vida ni hacerse bueno a fuerza de voluntad: hay en nosotros una distancia con Dios que no logramos cerrar solos. Y segundo, que Dios, en lugar de dejarnos así, vino a buscarnos en Jesús. Ser cristiano es responder a ese amor: confiar en Él, dejarse cambiar por Él y aprender a vivir con Él de cerca.</p>
-  <p class="body">No es un club de personas perfectas. Es más bien un grupo de gente que sabe que necesita ayuda y la ha encontrado. Por eso, a lo largo de esta carta, verás que todo vuelve siempre al mismo centro: no a lo que nosotros hacemos por Dios, sino a lo que Dios hizo primero por nosotros.</p>
+  <p class="body dropcap">La palabra «cristiano» nació como un apodo. A los primeros seguidores de Jesús, en la ciudad de Antioquía, la gente empezó a llamarlos así porque hablaban todo el tiempo de <em>Cristo</em> (Hechos 11:26). No eran «los de las reglas» ni «los del templo», sino «los de Cristo». Y eso sigue siendo lo esencial.</p>
+  <p class="body">Un cristiano es alguien que reconoce dos cosas a la vez. La primera, que por sí mismo no puede salvar su propia vida ni hacerse bueno a fuerza de voluntad, porque hay en nosotros una distancia con Dios que no logramos cerrar solos. La segunda, que Dios, en lugar de dejarnos así, vino a buscarnos en Jesús. Ser cristiano es responder a ese amor. Es confiar en Él, dejarse cambiar por Él y aprender a vivir con Él de cerca.</p>
+  <p class="body">No es un club de personas perfectas. Es más bien un grupo de gente que sabe que necesita ayuda y la ha encontrado. Por eso quiero que veas, a lo largo de esta carta, que todo vuelve siempre al mismo centro, que no es lo que nosotros hacemos por Dios, sino lo que Dios hizo primero por nosotros.</p>
   <div class="verse">
     <span class="text">En esto consiste el amor: no en que nosotros hayamos amado a Dios, sino en que él nos amó a nosotros, y envió a su Hijo.</span>
     <span class="ref">1 Juan 4:10</span>
@@ -518,18 +538,19 @@
 <!-- PAGE 3 · EL EVANGELIO -->
 <section class="page chapter wrap" id="evangelio" style="--accent:#2f7d8a">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C9.5 4.8 6.5 4.5 3.5 5.4v12.8c3-0.9 6-0.6 8.5 1.1 2.5-1.7 5.5-2 8.5-1.1V5.4C17.5 4.5 14.5 4.8 12 6.5z"/><path d="M12 6.5v13"/></svg>
     <span class="num">primera parte</span>
     <h2>El gran relato: <em>el evangelio</em></h2>
-    <p class="lede">La fe cristiana se entiende mejor como una historia en cuatro momentos. «Evangelio» significa, literalmente, «buena noticia»; y para que una noticia sea buena, primero hay que saber dónde estábamos.</p>
+    <p class="lede">La fe cristiana se entiende mejor como una historia en cuatro momentos. La palabra «evangelio» significa, literalmente, «buena noticia». Y para que una noticia sea buena, primero hay que saber dónde estábamos.</p>
   </div>
   <div class="arc">
     <div class="beat">
       <h4>Creación <span>todo comenzó bien</span></h4>
-      <p>Dios hizo el mundo, y lo hizo bueno. Creó al ser humano a su imagen, no como un esclavo ni por aburrimiento, sino para una relación de amor y confianza. La vida tenía un sentido claro: vivir cerca de Dios y cuidar de lo creado.</p>
+      <p>Dios hizo el mundo, y lo hizo bueno. Creó al ser humano a su imagen, no como un esclavo ni por aburrimiento, sino para una relación de amor y confianza. La vida tenía un sentido claro, que era vivir cerca de Dios y cuidar de lo creado.</p>
     </div>
     <div class="beat">
       <h4>La ruptura <span>algo se quebró</span></h4>
-      <p>El ser humano quiso ser su propio dios y decidir por su cuenta el bien y el mal. A eso la Biblia lo llama «pecado»: no solo hacer cosas malas, sino dar la espalda a Dios. Esa ruptura lo desordenó todo —nuestra relación con Dios, con los demás, con nosotros mismos— y trajo el dolor y la muerte.</p>
+      <p>El ser humano quiso ser su propio dios y decidir por su cuenta el bien y el mal. A eso la Biblia lo llama «pecado», que no es solo hacer cosas malas, sino dar la espalda a Dios. Esa ruptura lo desordenó todo, nuestra relación con Dios, con los demás y con nosotros mismos, y trajo el dolor y la muerte.</p>
     </div>
     <div class="beat">
       <h4>La redención <span>Dios vino a buscarnos</span></h4>
@@ -537,10 +558,10 @@
     </div>
     <div class="beat">
       <h4>La restauración <span>y un día, todo nuevo</span></h4>
-      <p>La historia no termina en la cruz. Jesús prometió volver y hacer nuevas todas las cosas: un mundo sin lágrimas, sin injusticia ni muerte. El cristiano vive hoy con esa esperanza, sabiendo cómo termina el relato.</p>
+      <p>La historia no termina en la cruz. Jesús prometió volver y hacer nuevas todas las cosas, un mundo sin lágrimas, sin injusticia ni muerte. El cristiano vive hoy con esa esperanza, sabiendo cómo termina el relato.</p>
     </div>
   </div>
-  <p class="body">Estas cuatro escenas —creación, ruptura, redención y restauración— son el esqueleto de toda la Biblia. Cuando entiendes esto, el resto encaja: las creencias que vienen a continuación no son ideas sueltas, sino distintas caras de esta misma buena noticia.</p>
+  <p class="body">Creación, ruptura, redención y restauración son el esqueleto de toda la Biblia. Cuando entiendes estas cuatro escenas, el resto encaja, porque las creencias que vienen a continuación no son ideas sueltas, sino distintas caras de esta misma buena noticia.</p>
   <div class="verse feature">
     <span class="text">De tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna.</span>
     <span class="ref">Juan 3:16</span>
@@ -550,13 +571,14 @@
 <!-- PAGE 4 · LO QUE ESTÁ EN EL CENTRO -->
 <section class="page chapter wrap" id="centro" style="--accent:#9e3b30">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6.5v11M8 9.5h8" stroke-width="1.6"/></svg>
     <span class="num">segunda parte</span>
     <h2>Lo que está <em>en el centro</em></h2>
-    <p class="lede">El cristianismo no comienza con reglas ni con una institución, sino con una persona: Jesús. Todo lo demás nace de ahí. Estas son las creencias que lo sostienen.</p>
+    <p class="lede">El cristianismo no comienza con reglas ni con una institución, sino con una persona, Jesús. Todo lo demás nace de ahí. Y estas son las creencias que lo sostienen.</p>
   </div>
   <div class="belief">
     <h3><span class="marker">i.</span>La Biblia es la voz de Dios</h3>
-    <p class="body">Es nuestra guía y autoridad: no un libro de historia cualquiera, sino la manera en que Dios se da a conocer. La leemos no para acumular datos, sino para escuchar a quien la inspiró.</p>
+    <p class="body">La Biblia es nuestra guía y autoridad. No es un libro de historia cualquiera, sino la manera en que Dios se da a conocer. La leemos no para acumular datos, sino para escuchar a quien la inspiró.</p>
     <div class="verse">
       <span class="text">Toda la Escritura es inspirada por Dios, y útil para enseñar, para corregir y para instruir en justicia.</span>
       <span class="ref">2 Timoteo 3:16</span>
@@ -564,15 +586,15 @@
   </div>
   <div class="belief">
     <h3><span class="marker">ii.</span>La salvación es un regalo</h3>
-    <p class="body">No se gana siendo lo bastante bueno. Se recibe confiando en lo que Jesús ya hizo. Eso libera del peso de tener que merecerlo todo, y cambia el miedo por gratitud.</p>
+    <p class="body">La salvación no se gana siendo lo bastante bueno. Se recibe confiando en lo que Jesús ya hizo. Eso libera del peso de tener que merecerlo todo, y cambia el miedo por gratitud.</p>
     <div class="verse">
       <span class="text">Por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras.</span>
-      <span class="ref">Efesios 2:8–9</span>
+      <span class="ref">Efesios 2:8 a 9</span>
     </div>
   </div>
   <div class="belief">
     <h3><span class="marker">iii.</span>Jesús es el camino a Dios</h3>
-    <p class="body">No uno entre muchos, sino el puente que Dios mismo tendió hacia nosotros. No tuvimos que subir hasta Él; Él bajó hasta nosotros.</p>
+    <p class="body">Jesús no es uno entre muchos caminos, sino el puente que Dios mismo tendió hacia nosotros. No tuvimos que subir hasta Él, pues Él bajó hasta nosotros.</p>
     <div class="verse">
       <span class="text">Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.</span>
       <span class="ref">Juan 14:6</span>
@@ -580,7 +602,7 @@
   </div>
   <div class="belief">
     <h3><span class="marker">iv.</span>Nacer de nuevo</h3>
-    <p class="body">Seguir a Cristo cambia a una persona desde dentro. No es volverse religioso ni más estricto: es empezar de nuevo, recibir una vida nueva que Dios mismo enciende.</p>
+    <p class="body">Seguir a Cristo cambia a una persona desde dentro. No es volverse religioso ni más estricto, sino empezar de nuevo y recibir una vida nueva que Dios mismo enciende.</p>
     <div class="verse">
       <span class="text">El que no naciere de nuevo, no puede ver el reino de Dios.</span>
       <span class="ref">Juan 3:3</span>
@@ -588,122 +610,128 @@
   </div>
   <div class="belief">
     <h3><span class="marker">v.</span>Un Dios en tres personas</h3>
-    <p class="body">Un solo Dios que se nos revela como Padre, Hijo y Espíritu Santo: cercano, presente y vivo. No tres dioses, ni un solo Dios con tres disfraces, sino un misterio de amor que existe en relación desde siempre.</p>
+    <p class="body">Un solo Dios que se nos revela como Padre, Hijo y Espíritu Santo, siempre cercano, presente y vivo. No son tres dioses, ni un solo Dios con tres disfraces, sino un misterio de amor que existe en relación desde siempre.</p>
   </div>
 </section>
 
 <!-- PAGE 5 · LAS CINCO SOLAS -->
 <section class="page chapter wrap" id="solas" style="--accent:#6d4f93">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none"><circle cx="4" cy="12" r="1.7"/><circle cx="8" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="16" cy="12" r="1.7"/><circle cx="20" cy="12" r="1.7"/></svg>
     <span class="num">tercera parte · el corazón de esta carta</span>
     <h2>Las <em>Cinco Solas</em></h2>
-    <p class="lede">Hace unos quinientos años, durante la Reforma, muchos cristianos quisieron resumir el evangelio en cinco frases breves en latín. Cada una empieza con la palabra <em>sola</em> —«solo», «solamente»— porque señalan dónde no hay que añadir nada de nuestra parte.</p>
+    <p class="lede">Hace unos quinientos años, durante la Reforma, muchos cristianos quisieron resumir el evangelio en cinco frases breves en latín. Cada una empieza con la palabra «sola», que quiere decir «solo» o «solamente», porque señalan el punto donde no hay que añadir nada de nuestra parte.</p>
   </div>
-  <p class="body">No son cinco temas distintos, sino cinco maneras de proteger una misma verdad: que la salvación es enteramente obra de Dios y un regalo suyo. Cada «sola» responde a una pregunta. ¿Quién tiene la última palabra? ¿Cómo se recibe la salvación? ¿Por qué la da Dios? ¿A través de quién? ¿Y para qué, al final de todo? Léelas despacio; juntas dibujan el mapa entero de la fe.</p>
+  <p class="body">No son cinco temas distintos, sino cinco maneras de proteger una misma verdad, la de que la salvación es enteramente obra de Dios y un regalo suyo. Cada «sola» responde a una pregunta. ¿Quién tiene la última palabra? ¿Cómo se recibe la salvación? ¿Por qué la da Dios? ¿A través de quién? ¿Y para qué, al final de todo? Léelas despacio. Juntas dibujan el mapa entero de la fe.</p>
 
   <div class="sola" data-n="1" style="--accent:#356a92">
     <span class="latin">Sola Scriptura</span>
     <span class="gloss">Solo la Escritura</span>
-    <p class="body">La Biblia es la autoridad final y suficiente para conocer a Dios y saber cómo vivir. Esto no significa despreciar a los buenos maestros, la historia de la Iglesia o la razón; significa que todo eso se somete a la Escritura, y no al revés. Cuando hay duda, la última palabra la tiene la Palabra de Dios, no una costumbre ni una opinión humana.</p>
+    <p class="body">La Biblia es la autoridad final y suficiente para conocer a Dios y saber cómo vivir. Esto no significa despreciar a los buenos maestros, la historia de la Iglesia o la razón. Significa que todo eso se somete a la Escritura, y no al revés. Cuando hay duda, la última palabra la tiene la Palabra de Dios, y no una costumbre ni una opinión humana.</p>
     <div class="verse">
       <span class="text">Toda la Escritura es inspirada por Dios… a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra.</span>
-      <span class="ref">2 Timoteo 3:16–17</span>
+      <span class="ref">2 Timoteo 3:16 a 17</span>
     </div>
-    <p class="practice"><b>En la práctica:</b> leemos la Biblia con humildad y la comparamos con todo lo que oímos. Como los de Berea, que «escudriñaban cada día las Escrituras para ver si estas cosas eran así» (Hechos 17:11).</p>
+    <p class="practice"><b>En la práctica.</b> Leemos la Biblia con humildad y la comparamos con todo lo que oímos, como los de Berea, que «escudriñaban cada día las Escrituras para ver si estas cosas eran así» (Hechos 17:11).</p>
   </div>
 
   <div class="sola" data-n="2" style="--accent:#b5642a">
     <span class="latin">Sola Fide</span>
     <span class="gloss">Solo la fe</span>
-    <p class="body">Somos declarados justos delante de Dios solo por la fe, es decir, por confiar en Jesús, y no por la suma de nuestras buenas obras. Esto no quiere decir que las obras no importen —importan, y mucho—, sino que llegan <em>después</em>, como fruto del agradecimiento, no <em>antes</em>, como precio de entrada. La fe es la mano vacía que recibe el regalo.</p>
+    <p class="body">Somos declarados justos delante de Dios solo por la fe, es decir, por confiar en Jesús, y no por la suma de nuestras buenas obras. Esto no quiere decir que las obras no importen, porque importan y mucho, sino que llegan después, como fruto del agradecimiento, y no antes, como precio de entrada. La fe es la mano vacía que recibe el regalo.</p>
     <div class="verse">
       <span class="text">Concluimos, pues, que el hombre es justificado por fe sin las obras de la ley.</span>
       <span class="ref">Romanos 3:28</span>
     </div>
-    <p class="practice"><b>En la práctica:</b> dejamos de medir nuestro valor por lo bien que nos portamos esta semana. Descansamos en lo que Cristo hizo, y desde esa paz amamos y servimos.</p>
+    <p class="practice"><b>En la práctica.</b> Dejamos de medir nuestro valor por lo bien que nos portamos esta semana. Descansamos en lo que Cristo hizo, y desde esa paz amamos y servimos.</p>
   </div>
 
   <div class="sola" data-n="3" style="--accent:#5a8a44">
     <span class="latin">Sola Gratia</span>
     <span class="gloss">Solo la gracia</span>
-    <p class="body">«Gracia» es un favor que no se merece. Si la fe es la mano que recibe, la gracia es el motivo por el que hay algo para recibir. Dios no nos salva porque éramos atractivos, útiles o suficientemente buenos, sino por pura bondad suya. Nada empezó en nosotros: hasta el deseo de buscarle es ya un regalo de Él.</p>
+    <p class="body">La palabra «gracia» nombra un favor que no se merece. Si la fe es la mano que recibe, la gracia es el motivo por el que hay algo para recibir. Dios no nos salva porque éramos atractivos, útiles o suficientemente buenos, sino por pura bondad suya. Nada empezó en nosotros, porque hasta el deseo de buscarle es ya un regalo de Él.</p>
     <div class="verse">
       <span class="text">Y si por gracia, ya no es por obras; de otra manera la gracia ya no es gracia.</span>
       <span class="ref">Romanos 11:6</span>
     </div>
-    <p class="practice"><b>En la práctica:</b> desaparece el orgullo («yo me lo gané») y también la desesperación («no soy suficiente»). Ambos sobran cuando todo es regalo.</p>
+    <p class="practice"><b>En la práctica.</b> Desaparece el orgullo de quien dice «yo me lo gané», y también la desesperación de quien dice «no soy suficiente». Ambos sobran cuando todo es regalo.</p>
   </div>
 
   <div class="sola" data-n="4" style="--accent:#9e3b30">
     <span class="latin">Solus Christus</span>
     <span class="gloss">Solo Cristo</span>
-    <p class="body">Hay un único puente entre Dios y nosotros, y es Jesús. No nos salva sumándole a Cristo otros méritos, intermediarios o rituales: su obra en la cruz fue completa y suficiente. No necesita ser repetida ni completada. Lo que Él hizo, lo hizo «una vez para siempre».</p>
+    <p class="body">Hay un único puente entre Dios y nosotros, y es Jesús. No nos salva sumándole a Cristo otros méritos, intermediarios o rituales, porque su obra en la cruz fue completa y suficiente. No necesita ser repetida ni completada. Lo que Él hizo, lo hizo «una vez para siempre».</p>
     <div class="verse">
       <span class="text">Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre.</span>
       <span class="ref">1 Timoteo 2:5</span>
     </div>
-    <p class="practice"><b>En la práctica:</b> oramos con confianza directamente a Dios por medio de Jesús, sabiendo que el acceso ya está abierto y no depende de nuestra perfección.</p>
+    <p class="practice"><b>En la práctica.</b> Oramos con confianza directamente a Dios por medio de Jesús, sabiendo que el acceso ya está abierto y no depende de nuestra perfección.</p>
   </div>
 
   <div class="sola" data-n="5" style="--accent:#a8742a">
     <span class="latin">Soli Deo Gloria</span>
     <span class="gloss">Solo a Dios la gloria</span>
-    <p class="body">Si la salvación es por gracia, mediante la fe, solo en Cristo y según la Escritura, entonces el mérito no es nuestro: toda la gloria le pertenece a Dios. Esta última «sola» recoge a las otras cuatro. Y va más allá de la salvación: abarca la vida entera. Comer, trabajar, amar, descansar… todo puede hacerse «para la gloria de Dios».</p>
+    <p class="body">Si la salvación es por gracia, mediante la fe, solo en Cristo y según la Escritura, entonces el mérito no es nuestro, y toda la gloria le pertenece a Dios. Esta última «sola» recoge a las otras cuatro. Y va más allá de la salvación, porque abarca la vida entera. Comer, trabajar, amar, descansar, todo puede hacerse para la gloria de Dios.</p>
     <div class="verse">
       <span class="text">Porque de él, y por él, y para él, son todas las cosas. A él sea la gloria por los siglos. Amén.</span>
       <span class="ref">Romanos 11:36</span>
     </div>
-    <p class="practice"><b>En la práctica:</b> la vida deja de girar en torno a uno mismo. Hasta lo más cotidiano —«si, pues, coméis o bebéis… hacedlo todo para la gloria de Dios» (1 Corintios 10:31)— se vuelve una forma de gratitud.</p>
+    <p class="practice"><b>En la práctica.</b> La vida deja de girar en torno a uno mismo. Hasta lo más cotidiano se vuelve una forma de gratitud, porque «si, pues, coméis o bebéis… hacedlo todo para la gloria de Dios» (1 Corintios 10:31).</p>
   </div>
 
-  <p class="body">Fíjate cómo encajan, como eslabones de una sola cadena: <em>la Escritura</em> nos dice que somos salvos por <em>la fe</em>, que recibe <em>la gracia</em>, que se nos da solo en <em>Cristo</em>, todo ello <em>para la gloria de Dios</em>. Quita una y las demás se tambalean. Juntas, son el evangelio en cinco palabras.</p>
+  <p class="body">Fíjate cómo encajan, como eslabones de una sola cadena. <em>La Escritura</em> nos dice que somos salvos por <em>la fe</em>, que recibe <em>la gracia</em>, que se nos da solo en <em>Cristo</em>, y todo ello <em>para la gloria de Dios</em>. Quita una y las demás se tambalean. Juntas son el evangelio en cinco palabras.</p>
 </section>
 
 <!-- PAGE 6 · CÓMO SE VIVE -->
 <section class="page chapter wrap" id="vivir" style="--accent:#5a8a44">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21v-6"/><path d="M12 15c0-3.3 2.2-5.6 5.5-5.6C17.5 12.7 15.3 15 12 15z"/><path d="M12 15c0-3.3-2.2-5.6-5.5-5.6C6.5 12.7 8.7 15 12 15z"/><path d="M12 9.5C12 6 9.8 3.5 9.8 3.5S7.6 6 7.6 9.5"/></svg>
     <span class="num">cuarta parte</span>
     <h2>Cómo se vive <em>esta fe</em></h2>
-    <p class="lede">Vivir bien no es una lista para ganarse el cielo: es la respuesta natural de quien se sabe amado. Aun así, la Biblia da una dirección clara.</p>
+    <p class="lede">Vivir bien no es una lista para ganarse el cielo, sino la respuesta natural de quien se sabe amado. Aun así, la Biblia nos da una dirección clara.</p>
   </div>
   <div class="ledger">
     <div class="col">
       <h4>Hacia lo que se camina</h4>
       <ul>
-        <li>Amar a Dios y al prójimo<span class="cite">Mateo 22:37–39</span></li>
+        <li>Amar a Dios y al prójimo<span class="cite">Mateo 22:37 a 39</span></li>
         <li>Orar y leer la Biblia<span class="cite">1 Tesalonicenses 5:17</span></li>
         <li>Acompañarse entre creyentes<span class="cite">Hebreos 10:25</span></li>
         <li>Perdonar y ser bondadosos<span class="cite">Efesios 4:32</span></li>
-        <li>Cuidar el cuerpo como templo<span class="cite">1 Corintios 6:19–20</span></li>
+        <li>Cuidar el cuerpo como templo<span class="cite">1 Corintios 6:19 a 20</span></li>
       </ul>
     </div>
     <div class="col">
       <h4>De lo que uno se aparta</h4>
       <ul>
-        <li>Poner algo por encima de Dios<span class="cite">Éxodo 20:3–4</span></li>
+        <li>Poner algo por encima de Dios<span class="cite">Éxodo 20:3 a 4</span></li>
         <li>La inmoralidad sexual<span class="cite">1 Corintios 6:18</span></li>
         <li>La embriaguez y los excesos<span class="cite">Efesios 5:18</span></li>
         <li>La mentira y el robo<span class="cite">Efesios 4:25</span></li>
-        <li>El odio, la envidia, la amargura<span class="cite">Gálatas 5:19–21</span></li>
+        <li>El odio, la envidia, la amargura<span class="cite">Gálatas 5:19 a 21</span></li>
       </ul>
     </div>
   </div>
-  <p class="body" style="margin-top:28px">Hay también costumbres concretas sobre las que los cristianos sinceros no siempre coinciden. Vale la pena mirarlas con honestidad, mostrando las dos lecturas.</p>
-  <div class="nuance">
-    <h4>Sobre comer sangre de animales</h4>
-    <div class="twosides">
-      <p class="side"><b>Quienes lo evitan</b> se apoyan en una instrucción dada a los primeros cristianos: <em>«que os abstengáis de lo sacrificado a ídolos, de sangre, de ahogado y de fornicación»</em> (Hechos 15:29).</p>
-      <p class="side"><b>Otros entienden</b> que aquella indicación buscaba la sana convivencia entre creyentes de orígenes distintos en esa época, más que una prohibición permanente.</p>
-    </div>
+  <p class="body" style="margin-top:28px">Hay también costumbres concretas sobre las que los cristianos sinceros no siempre coinciden. Vale la pena mirarlas con honestidad, mostrando las dos lecturas. Toca cada una para desplegarla.</p>
+
+  <div class="acc-group">
+    <details class="acc">
+      <summary>Sobre comer sangre de animales</summary>
+      <div class="acc-body">
+        <p class="side"><b>Quienes lo evitan</b> se apoyan en una instrucción dada a los primeros cristianos, donde se lee «que os abstengáis de lo sacrificado a ídolos, de sangre, de ahogado y de fornicación» (Hechos 15:29).</p>
+        <p class="side"><b>Otros entienden</b> que aquella indicación buscaba la sana convivencia entre creyentes de orígenes distintos en esa época, más que una prohibición permanente.</p>
+      </div>
+    </details>
+    <details class="acc">
+      <summary>Sobre los tatuajes</summary>
+      <div class="acc-body">
+        <p class="side"><b>Quienes los evitan</b> recuerdan el versículo que dice «No haréis ninguna figura grabada en vuestro cuerpo» (Levítico 19:28).</p>
+        <p class="side"><b>Otros señalan</b> que esa ley estaba ligada a ritos paganos de aquel tiempo, y que cuenta más el corazón que lo externo. Suele dejarse a la conciencia de cada quien.</p>
+      </div>
+    </details>
   </div>
-  <div class="nuance">
-    <h4>Sobre los tatuajes</h4>
-    <div class="twosides">
-      <p class="side"><b>Quienes los evitan</b> citan: <em>«No haréis ninguna figura grabada en vuestro cuerpo»</em> (Levítico 19:28).</p>
-      <p class="side"><b>Otros señalan</b> que esa ley estaba ligada a ritos paganos de aquel tiempo, y que cuenta más el corazón que lo externo. Suele dejarse a la conciencia de cada quien.</p>
-    </div>
-  </div>
-  <p class="body" style="margin-top:28px">En todos estos casos vale un principio antiguo y sabio: en lo esencial, unidad; en lo dudoso, libertad; y en todo, amor. Lo importante nunca es ganar la discusión, sino caminar con humildad.</p>
+
+  <p class="body" style="margin-top:28px">En todos estos casos vale un principio antiguo y sabio. En lo esencial, unidad; en lo dudoso, libertad; y en todo, amor. Lo importante nunca es ganar la discusión, sino caminar con humildad.</p>
   <div class="verse feature">
     <span class="text">Cuidaos de cumplir vuestra justicia delante de los hombres para ser vistos de ellos. El amor verdadero no busca aplauso.</span>
     <span class="ref">a partir de Mateo 6:1</span>
@@ -713,10 +741,11 @@
 <!-- PAGE 7 · CATOLICISMO -->
 <section class="page chapter wrap" id="catolicismo" style="--accent:#356a92">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9l4-3 4 3 4-3 4 3v11"/><path d="M3 20h18"/><path d="M8 20v-5M16 20v-5"/></svg>
     <span class="num">quinta parte</span>
     <h2>Cerca del <em>catolicismo</em>, y a la vez distinto</h2>
   </div>
-  <p class="shared-note">Comparten más de lo que separa: ambos creen en Dios, en Jesús como Salvador, en la Trinidad y en la Biblia. Las diferencias están sobre todo en la autoridad, la salvación y la práctica —y, como verás, es justo ahí donde las Cinco Solas marcan el contraste. Aquí, con respeto para ambos lados.</p>
+  <p class="shared-note">Comparten más de lo que separa, porque ambos creen en Dios, en Jesús como Salvador, en la Trinidad y en la Biblia. Las diferencias están sobre todo en la autoridad, la salvación y la práctica, y, como verás, es justo ahí donde las Cinco Solas marcan el contraste. Lo cuento con respeto para ambos lados.</p>
   <div class="compare">
     <div class="row">
       <div class="topic">¿Dónde está la autoridad?</div>
@@ -742,7 +771,7 @@
     <div class="row">
       <div class="topic">El liderazgo de la Iglesia</div>
       <div class="views">
-        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Cristo es la única cabeza; no hay un líder humano supremo.</p></div>
+        <div class="view"><span class="tag">mirada cristiana evangélica</span><p>Cristo es la única cabeza, y no hay un líder humano supremo.</p></div>
         <div class="view"><span class="tag">mirada católica</span><p>El Papa, sucesor de Pedro, es la cabeza visible.</p></div>
       </div>
     </div>
@@ -763,6 +792,7 @@
 <!-- PAGE 8 · POR QUÉ CRISTO ES ÚNICO -->
 <section class="page chapter wrap" id="unico" style="--accent:#a8742a">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="4.5"/><path d="M12 2.5v3M12 20.5v1M3.5 13h-1M21.5 13h-1M6 7l-1.4-1.4M19.4 5.6 18 7"/></svg>
     <span class="num">sexta parte</span>
     <h2>Por qué <em>Cristo</em> lo cambia todo</h2>
     <p class="lede">Más allá de cualquier tradición, lo que hace única a esta fe es Él mismo.</p>
@@ -771,8 +801,8 @@
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Es una relación, no un esfuerzo</h4><p>No se trata de ganar el favor de Dios, sino de recibir su amor.</p></div></div>
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Dios se acercó primero</h4><p>En Cristo, Dios mismo vino a vivir entre nosotros, y conoció el dolor humano por dentro.</p></div></div>
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Ofrece perdón de verdad</h4><p>La cruz no deja deudas pendientes para quien la recibe.</p></div></div>
-    <div class="reason"><span class="rn"></span><div class="rt"><h4>La vida eterna es certeza</h4><p>No un premio incierto al final, sino una promesa presente.</p></div></div>
-    <div class="reason"><span class="rn"></span><div class="rt"><h4>Resucitó</h4><p>Toda la fe descansa en algo concreto: Jesús venció a la muerte.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>La vida eterna es certeza</h4><p>No es un premio incierto al final, sino una promesa presente.</p></div></div>
+    <div class="reason"><span class="rn"></span><div class="rt"><h4>Resucitó</h4><p>Toda la fe descansa en algo concreto, y es que Jesús venció a la muerte.</p></div></div>
   </div>
   <div class="verse feature">
     <span class="text">Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá.</span>
@@ -783,32 +813,23 @@
 <!-- PAGE 9 · GLOSARIO -->
 <section class="page chapter wrap" id="glosario" style="--accent:#8a527a">
   <div class="chapter-head">
+    <svg class="motif" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17l-6-4-6 4z"/></svg>
     <span class="num">séptima parte</span>
     <h2>Un pequeño <em>glosario</em></h2>
-    <p class="lede">Algunas palabras se repiten en la fe cristiana y conviene tenerlas claras. Aquí, en lenguaje sencillo.</p>
+    <p class="lede">Algunas palabras se repiten en la fe cristiana y conviene tenerlas claras. Toca cada una para ver su significado, en lenguaje sencillo.</p>
   </div>
-  <dl class="glossary">
-    <dt>Evangelio</dt>
-    <dd>Significa «buena noticia». Es el anuncio de que Dios, en Jesús, vino a rescatarnos y a reconciliarnos con Él.</dd>
-    <dt>Gracia</dt>
-    <dd>El favor de Dios que no se merece ni se compra. Un regalo dado por pura bondad suya.</dd>
-    <dt>Fe</dt>
-    <dd>Confiar y apoyarse en Dios y en lo que Jesús hizo. No es saberlo todo, sino entregarse a quien sí lo sabe.</dd>
-    <dt>Pecado</dt>
-    <dd>Más que «portarse mal»: es darle la espalda a Dios y vivir como si Él no importara. De ahí brotan los daños concretos.</dd>
-    <dt>Justificación</dt>
-    <dd>El acto en que Dios declara justa a una persona —no porque lo sea por sí misma, sino por la fe en Cristo—. Es recibir el perdón como un veredicto firme.</dd>
-    <dt>Redención</dt>
-    <dd>«Rescate». La obra de Jesús al pagar el precio que nos liberaba de la culpa y la muerte.</dd>
-    <dt>Arrepentimiento</dt>
-    <dd>Cambiar de dirección: dejar de caminar lejos de Dios y volverse hacia Él. No es solo sentir culpa, sino dar la vuelta.</dd>
-    <dt>Santificación</dt>
-    <dd>El proceso lento y diario en que Dios va transformando a quien cree, pareciéndose cada vez más a Jesús.</dd>
-    <dt>Trinidad</dt>
-    <dd>La enseñanza de que hay un solo Dios que existe en tres personas: Padre, Hijo y Espíritu Santo.</dd>
-    <dt>Encarnación</dt>
-    <dd>El momento en que Dios el Hijo se hizo verdaderamente humano en Jesús, sin dejar de ser Dios.</dd>
-  </dl>
+  <div class="acc-group">
+    <details class="acc"><summary>Evangelio</summary><div class="acc-body">Significa «buena noticia». Es el anuncio de que Dios, en Jesús, vino a rescatarnos y a reconciliarnos con Él.</div></details>
+    <details class="acc"><summary>Gracia</summary><div class="acc-body">El favor de Dios que no se merece ni se compra. Un regalo dado por pura bondad suya.</div></details>
+    <details class="acc"><summary>Fe</summary><div class="acc-body">Confiar y apoyarse en Dios y en lo que Jesús hizo. No es saberlo todo, sino entregarse a quien sí lo sabe.</div></details>
+    <details class="acc"><summary>Pecado</summary><div class="acc-body">Más que «portarse mal». Es darle la espalda a Dios y vivir como si Él no importara. De ahí brotan los daños concretos.</div></details>
+    <details class="acc"><summary>Justificación</summary><div class="acc-body">El acto en que Dios declara justa a una persona, no porque lo sea por sí misma, sino por la fe en Cristo. Es recibir el perdón como un veredicto firme.</div></details>
+    <details class="acc"><summary>Redención</summary><div class="acc-body">La palabra significa «rescate». Es la obra de Jesús al pagar el precio que nos liberaba de la culpa y la muerte.</div></details>
+    <details class="acc"><summary>Arrepentimiento</summary><div class="acc-body">Cambiar de dirección, dejar de caminar lejos de Dios y volverse hacia Él. No es solo sentir culpa, sino dar la vuelta.</div></details>
+    <details class="acc"><summary>Santificación</summary><div class="acc-body">El proceso lento y diario en que Dios va transformando a quien cree, pareciéndose cada vez más a Jesús.</div></details>
+    <details class="acc"><summary>Trinidad</summary><div class="acc-body">La enseñanza de que hay un solo Dios que existe en tres personas, Padre, Hijo y Espíritu Santo.</div></details>
+    <details class="acc"><summary>Encarnación</summary><div class="acc-body">El momento en que Dios el Hijo se hizo verdaderamente humano en Jesús, sin dejar de ser Dios.</div></details>
+  </div>
 </section>
 
 <!-- PAGE 10 · INVITACIÓN -->
@@ -816,7 +837,7 @@
   <div class="invite">
     <p class="eyebrow">y al final, una sola pregunta</p>
     <h2>¿Te gustaría conocer a <em>Jesús</em> de manera personal?</h2>
-    <p>No hace falta ser perfecta ni tener todas las respuestas. Basta un corazón abierto. Y orar puede ser tan sencillo como hablar con alguien que ya te ama:</p>
+    <p>No hace falta ser perfecta ni tener todas las respuestas. Basta un corazón abierto. Y orar puede ser tan sencillo como hablar con alguien que ya te ama.</p>
     <div class="prayer">
       <span class="lbl">una oración, con tus propias palabras</span>
       Jesús, sé que no puedo salvarme sola, y creo que tú viniste a buscarme. Gracias por amarme antes de que yo lo supiera. Perdona lo que he hecho mal, entra en mi vida y enséñame a caminar contigo. Confío en ti. Amén.
@@ -826,10 +847,10 @@
       <span class="text">He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él.</span>
       <span class="ref">Apocalipsis 3:20</span>
     </div>
-    <p class="signoff">Con cariño, para ti, Arleth.</p>
+    <p class="signoff">Con todo mi cariño, para ti, Arleth.</p>
     <div class="colophon">
-      Citas según la versión Reina-Valera 1960.<br>
-      Hecho a mano, con cariño · <button class="link" data-go="inicio">volver al inicio</button>
+      Citas según la versión Reina Valera 1960.<br>
+      Hecho a mano, con amor · <button class="link" data-go="inicio">volver al inicio</button>
     </div>
   </div>
 </section>
@@ -845,26 +866,26 @@
 
 <script>
 (function(){
-  const order=['inicio','indice','que-es','evangelio','centro','solas','vivir','catolicismo','unico','glosario','invitacion'];
-  const pages=order.map(id=>document.getElementById(id));
-  const topnav=document.getElementById('topnav');
-  const pager=document.getElementById('pager');
-  const pgPrev=document.getElementById('pgPrev');
-  const pgNext=document.getElementById('pgNext');
-  const pgCount=document.getElementById('pgCount');
-  const bar=document.getElementById('progress');
-  const navLinks=Array.prototype.slice.call(document.querySelectorAll('.topnav nav a'));
-  let current=0;
+  var order=['inicio','indice','que-es','evangelio','centro','solas','vivir','catolicismo','unico','glosario','invitacion'];
+  var pages=order.map(function(id){return document.getElementById(id);});
+  var topnav=document.getElementById('topnav');
+  var pager=document.getElementById('pager');
+  var pgPrev=document.getElementById('pgPrev');
+  var pgNext=document.getElementById('pgNext');
+  var pgCount=document.getElementById('pgCount');
+  var bar=document.getElementById('progress');
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('.topnav nav a'));
+  var current=0;
 
   function render(id){
-    let i=order.indexOf(id); if(i<0)i=0;
+    var i=order.indexOf(id); if(i<0)i=0;
     current=i;
     pages.forEach(function(p,k){ if(p) p.classList.toggle('active',k===i); });
     navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+order[i]); });
     pgCount.textContent=(i+1)+' / '+order.length;
     pgPrev.disabled=(i===0);
     pgNext.disabled=(i===order.length-1);
-    const onCover=(i===0);
+    var onCover=(i===0);
     topnav.classList.toggle('on-cover',onCover);
     pager.classList.toggle('hidden',onCover);
     bar.style.width=(order.length>1?(i/(order.length-1))*100:0)+'%';
@@ -874,7 +895,7 @@
     if(('#'+id)===location.hash){ render(id); } else { location.hash=id; }
   }
   function step(d){
-    const ni=Math.min(order.length-1,Math.max(0,current+d));
+    var ni=Math.min(order.length-1,Math.max(0,current+d));
     go(order[ni]);
   }
 
@@ -887,21 +908,21 @@
 
   document.addEventListener('keydown',function(e){
     if(e.metaKey||e.ctrlKey||e.altKey) return;
-    const tag=(e.target&&e.target.tagName||'').toLowerCase();
-    if(tag==='input'||tag==='textarea') return;
+    var tag=(e.target&&e.target.tagName||'').toLowerCase();
+    if(tag==='input'||tag==='textarea'||tag==='summary') return;
     if(e.key==='ArrowRight'){ step(1); }
     else if(e.key==='ArrowLeft'){ step(-1); }
   });
 
-  let tsx=0,tsy=0;
-  document.addEventListener('touchstart',function(e){ const t=e.changedTouches[0]; tsx=t.clientX; tsy=t.clientY; },{passive:true});
+  var tsx=0,tsy=0;
+  document.addEventListener('touchstart',function(e){ var t=e.changedTouches[0]; tsx=t.clientX; tsy=t.clientY; },{passive:true});
   document.addEventListener('touchend',function(e){
-    const t=e.changedTouches[0]; const dx=t.clientX-tsx, dy=t.clientY-tsy;
+    var t=e.changedTouches[0]; var dx=t.clientX-tsx, dy=t.clientY-tsy;
     if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.5){ step(dx<0?1:-1); }
   },{passive:true});
 
-  // ---- Theme toggle (claro / oscuro) ----
-  const themeBtn=document.getElementById('themeToggle');
+  // ---- Tema claro / oscuro ----
+  var themeBtn=document.getElementById('themeToggle');
   function setTheme(t){
     document.documentElement.setAttribute('data-theme',t);
     try{ localStorage.setItem('tema-fe',t); }catch(e){}
@@ -909,10 +930,10 @@
     themeBtn.setAttribute('aria-label',(t==='dark')?'Cambiar a modo claro':'Cambiar a modo oscuro');
   }
   themeBtn.addEventListener('click',function(){
-    const cur=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
+    var cur=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
     setTheme(cur==='dark'?'light':'dark');
   });
-  (function(){ const t=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
+  (function(){ var t=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
     themeBtn.textContent=(t==='dark')?'☀':'☾'; })();
 
   render((location.hash||'').slice(1)||'inicio');
