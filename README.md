@@ -22,16 +22,12 @@ cristiano, el evangelio y las **Cinco Solas** de la Reforma.
 
 ## 🛠️ Detalles técnicos
 
-- Una sola página en HTML y CSS, sin dependencias.
+- Un solo archivo (`index.html`) en HTML y CSS, sin dependencias.
 - Diseño tipográfico responsivo (se ve bien en celular y computadora).
-- Animaciones suaves al desplazar, navegación fija y botón de "volver arriba".
-- Respeta la preferencia de *reducir movimiento* del sistema.
+- Modo claro y oscuro automáticos, según la preferencia del sistema.
+- Barra de progreso de lectura, navegación fija con sección activa y botón de "volver arriba".
+- Accesible: enlace para saltar al contenido, foco visible y soporte para *reducir movimiento* e impresión.
 - Citas bíblicas según la versión **Reina-Valera 1960**.
-
-## 📂 Archivos
-
-- `index.html` — la página principal (versión ampliada).
-- `folleto_cristianismo.html` — el folleto original que sirvió de base.
 
 ---
 
