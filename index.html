@@ -69,7 +69,7 @@
       radial-gradient(circle at 85% 70%, rgba(158,59,48,0.035), transparent 50%);
   }
   p{text-wrap:pretty}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:28px;padding-right:28px}
 
   /* ---- SKIP LINK ---- */
   .skip{
@@ -142,14 +142,14 @@
   }
 
   /* ---- PAGE / BOOK ---- */
-  .page{display:none;padding:114px 0 210px;min-height:100vh}
+  .page{display:none;padding-top:114px;padding-bottom:210px;min-height:100vh}
   .page.active{display:block}
   .page.cover.active{display:flex}
   /* cada hijo de la página activa aparece en secuencia (se aplica desde JS) */
   .page.is-entering > *{opacity:0}
 
   /* ---- COVER ---- */
-  .cover{
+  .page.cover{
     flex-direction:column;align-items:center;justify-content:center;text-align:center;
     padding:60px 28px;position:relative;
     background:
@@ -217,7 +217,6 @@
   .toc a .t-title{font-family:'Fraunces';font-weight:400;font-size:1.1rem}
 
   /* ---- SECTION SCAFFOLD ---- */
-  .chapter{padding:0}
   .chapter-head{margin-bottom:54px}
   .motif{
     display:block;width:46px;height:46px;color:var(--accent-on);margin-bottom:20px;
@@ -452,7 +451,8 @@
     .compare .views{grid-template-columns:1fr;gap:14px}
     .reason{gap:14px}
     .sola{padding:28px 22px}
-    .page{padding:102px 0 198px}
+    .page{padding-top:102px;padding-bottom:200px}
+    .wrap{padding-left:30px;padding-right:30px}
     /* En móvil, el desenfoque cuesta rendimiento: lo quitamos y dejamos un fondo más sólido */
     .topnav,.pager{backdrop-filter:none;-webkit-backdrop-filter:none}
   }
@@ -976,7 +976,6 @@
     </div>
     <p class="signoff">Con todo mi cariño, para ti, Arleth.</p>
     <div class="colophon">
-      Citas según la versión Reina Valera 1960.<br>
       Hecho a mano, con amor · <button class="link" data-go="inicio">volver al inicio</button>
     </div>
   </div>
