@@ -22,10 +22,12 @@ cristiano, el evangelio y las **Cinco Solas** de la Reforma.
 
 ## 🛠️ Detalles técnicos
 
-- Un solo archivo (`index.html`) en HTML y CSS, sin dependencias.
+- Un solo archivo (`index.html`) en HTML, CSS y JavaScript, sin dependencias.
+- **Lectura tipo libro**: una página por capítulo, con botones *Anterior / Siguiente*, contador de página, flechas del teclado y deslizar en el celular.
+- **Modo claro y oscuro** con un botón (☾/☀) que recuerda tu elección. Arranca siempre en claro.
+- **Color por capítulo**: cada sección y cada una de las Cinco Solas tiene su propio tono de acento.
 - Diseño tipográfico responsivo (se ve bien en celular y computadora).
-- Modo claro y oscuro automáticos, según la preferencia del sistema.
-- Barra de progreso de lectura, navegación fija con sección activa y botón de "volver arriba".
+- Barra de progreso, navegación fija con sección activa y vista previa al compartir el enlace.
 - Accesible: enlace para saltar al contenido, foco visible y soporte para *reducir movimiento* e impresión.
 - Citas bíblicas según la versión **Reina-Valera 1960**.
 

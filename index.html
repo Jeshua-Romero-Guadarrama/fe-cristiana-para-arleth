@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Una carta sobre la fe cristiana, escrita para Arleth: qué significa ser cristiano, el evangelio y las Cinco Solas explicadas con profundidad.">
 <meta name="author" content="Jeshua">
-<meta name="theme-color" content="#9e3b30" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1b1815" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#9e3b30">
 <title>El corazón de la fe cristiana — para Arleth</title>
+<!-- Aplica el tema guardado cuanto antes para evitar parpadeos -->
+<script>(function(){try{var t=localStorage.getItem('tema-fe')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 <!-- Vista previa al compartir el enlace -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -34,21 +34,22 @@
     --rouge-deep:#7a2c24;
     --gold:#b08431;
     --rule:#d8cdb6;
-    --nav-bg:rgba(246,241,231,.82);
+    --nav-bg:rgba(246,241,231,.85);
+    --accent:#9e3b30;
+    --accent-on:var(--accent);
     --maxw:720px;
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --ink:#ece2d2;
-      --ink-soft:#b3a892;
-      --paper:#1b1815;
-      --paper-deep:#241f1b;
-      --rouge:#dd8d7f;
-      --rouge-deep:#e9a99a;
-      --gold:#cfa959;
-      --rule:#3a332b;
-      --nav-bg:rgba(27,24,21,.85);
-    }
+  html[data-theme="dark"]{
+    --ink:#ece2d2;
+    --ink-soft:#b3a892;
+    --paper:#1b1815;
+    --paper-deep:#241f1b;
+    --rouge:#dd8d7f;
+    --rouge-deep:#e9a99a;
+    --gold:#cfa959;
+    --rule:#3a332b;
+    --nav-bg:rgba(27,24,21,.88);
+    --accent-on:color-mix(in srgb, var(--accent) 52%, #efe5d2);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -60,12 +61,12 @@
     line-height:1.75;
     font-size:18px;
     -webkit-font-smoothing:antialiased;
+    transition:background .4s ease,color .4s ease;
     background-image:
-      radial-gradient(circle at 20% 30%, rgba(176,132,49,0.035), transparent 55%),
-      radial-gradient(circle at 85% 70%, rgba(158,59,48,0.03), transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(176,132,49,0.04), transparent 55%),
+      radial-gradient(circle at 85% 70%, rgba(158,59,48,0.035), transparent 50%);
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-  section[id], header[id]{scroll-margin-top:74px}
 
   /* ---- SKIP LINK ---- */
   .skip{
@@ -74,30 +75,29 @@
   }
   .skip:focus{left:0}
 
+  /* ---- READING PROGRESS ---- */
+  .progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;z-index:120;
+    background:linear-gradient(90deg,var(--gold),var(--rouge));
+    transition:width .35s ease;
+  }
+
   /* ---- TOP NAV ---- */
   .topnav{
     position:fixed;top:0;left:0;right:0;z-index:100;
     background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid var(--rule);
-    transform:translateY(-110%);transition:transform .4s ease;
-  }
-  .topnav.show{transform:none}
-
-  /* ---- READING PROGRESS ---- */
-  .progress{
-    position:fixed;top:0;left:0;height:3px;width:0%;z-index:120;
-    background:linear-gradient(90deg,var(--gold),var(--rouge));
-    transition:width .12s linear;
+    transition:background .4s ease,border-color .4s ease;
   }
   .topnav .inner{
-    max-width:980px;margin:0 auto;padding:11px 22px;
-    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    max-width:1040px;margin:0 auto;padding:10px 18px;
+    display:flex;align-items:center;gap:16px;
   }
   .topnav .brand{
     font-family:'Fraunces';font-style:italic;font-size:1rem;color:var(--rouge-deep);
-    white-space:nowrap;text-decoration:none;
+    white-space:nowrap;text-decoration:none;flex:none;
   }
-  .topnav nav{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none}
+  .topnav nav{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;flex:1}
   .topnav nav::-webkit-scrollbar{display:none}
   .topnav nav a{
     font-family:'Spectral';font-size:.82rem;letter-spacing:.04em;
@@ -106,13 +106,31 @@
   }
   .topnav nav a:hover{color:var(--rouge);border-bottom-color:var(--gold)}
   .topnav nav a.active{color:var(--rouge-deep);border-bottom-color:var(--rouge)}
-  @media (max-width:720px){.topnav .brand{display:none}}
+  .topnav.on-cover{background:transparent;border-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .topnav.on-cover .brand,.topnav.on-cover nav{visibility:hidden}
+
+  .theme-toggle{
+    flex:none;width:36px;height:36px;border-radius:50%;cursor:pointer;
+    background:transparent;border:1px solid var(--rule);color:var(--ink-soft);
+    font-size:1rem;line-height:1;display:flex;align-items:center;justify-content:center;
+    transition:color .2s,border-color .2s,transform .2s,background .2s;
+  }
+  .theme-toggle:hover{color:var(--rouge);border-color:var(--gold);transform:rotate(-12deg)}
+
+  /* ---- PAGE / BOOK ---- */
+  .page{display:none;padding:90px 0 116px;min-height:100vh}
+  .page.active{display:block;animation:pageIn .5s ease}
+  .page.cover.active{display:flex}
+  @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
   /* ---- COVER ---- */
   .cover{
-    min-height:100vh;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;
     padding:60px 28px;position:relative;
+    background:
+      radial-gradient(circle at 16% 22%, color-mix(in srgb,#b5642a 18%,transparent), transparent 46%),
+      radial-gradient(circle at 84% 24%, color-mix(in srgb,#2f7d8a 16%,transparent), transparent 46%),
+      radial-gradient(circle at 50% 92%, color-mix(in srgb,#6d4f93 15%,transparent), transparent 52%);
   }
   .cover .eyebrow{
     font-family:'Spectral';font-style:italic;font-size:1.05rem;
@@ -136,23 +154,23 @@
     opacity:0;animation:rise 1s 1s ease forwards;
   }
   .cover .dedication b{color:var(--rouge-deep);font-weight:500}
-  .scrollcue{
-    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-    font-family:'Spectral';font-size:.78rem;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--ink-soft);
-    opacity:0;animation:fade 1.2s 1.6s ease forwards;
+  .cta{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:36px;
+    opacity:0;animation:rise 1s 1.25s ease forwards;
   }
-  .scrollcue::after{
-    content:"";display:block;width:1px;height:34px;margin:12px auto 0;
-    background:linear-gradient(var(--gold),transparent);
+  .btn{
+    font-family:'Spectral';font-size:1rem;cursor:pointer;border-radius:999px;
+    padding:13px 26px;border:1px solid var(--rouge);transition:transform .2s,background .2s,color .2s;
   }
+  .btn.primary{background:var(--rouge);color:#fff}
+  .btn.primary:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--rouge)}
+  .btn.ghost:hover{background:color-mix(in srgb,var(--rouge) 12%,transparent)}
 
   /* ---- INDEX / TABLE OF CONTENTS ---- */
-  .toc{
-    max-width:560px;margin:0 auto;padding:64px 28px 24px;
-  }
+  .toc{max-width:580px;margin:0 auto;padding:8px 28px 24px}
   .toc h2{
-    font-family:'Fraunces';font-style:italic;font-weight:400;font-size:1.2rem;
+    font-family:'Fraunces';font-style:italic;font-weight:400;font-size:1.6rem;
     color:var(--rouge);text-align:center;margin-bottom:6px;letter-spacing:.02em;
   }
   .toc .meta{
@@ -160,13 +178,11 @@
     color:var(--ink-soft);margin-bottom:26px;
   }
   .toc ol{list-style:none;counter-reset:t}
-  .toc li{
-    counter-increment:t;border-top:1px solid var(--rule);
-  }
+  .toc li{counter-increment:t;border-top:1px solid var(--rule)}
   .toc li:last-child{border-bottom:1px solid var(--rule)}
   .toc a{
     display:flex;align-items:baseline;gap:16px;padding:15px 4px;
-    text-decoration:none;color:var(--ink);transition:color .2s,padding .2s;
+    text-decoration:none;color:var(--ink);transition:color .2s,padding .2s;cursor:pointer;
   }
   .toc a:hover{color:var(--rouge);padding-left:10px}
   .toc a::before{
@@ -176,11 +192,11 @@
   .toc a .t-title{font-family:'Fraunces';font-weight:400;font-size:1.1rem}
 
   /* ---- SECTION SCAFFOLD ---- */
-  .chapter{padding:78px 0 20px}
+  .chapter{padding:0}
   .chapter-head{margin-bottom:42px}
   .num{
     font-family:'Fraunces';font-style:italic;font-weight:400;
-    font-size:1rem;color:var(--gold);letter-spacing:.05em;
+    font-size:1rem;color:var(--accent-on);letter-spacing:.05em;
     display:block;margin-bottom:10px;
   }
   .chapter h2{
@@ -188,9 +204,12 @@
     font-size:clamp(2rem,6vw,3rem);line-height:1.05;
     letter-spacing:-.015em;color:var(--ink);
   }
-  .chapter h2 em{font-style:italic;color:var(--rouge-deep)}
+  .chapter h2 em{font-style:italic;color:var(--accent-on)}
+  .chapter h2::after{
+    content:"";display:block;width:54px;height:3px;border-radius:2px;
+    background:var(--accent-on);margin-top:18px;
+  }
   .lede{font-size:1.12rem;color:var(--ink-soft);margin-top:18px;max-width:56ch}
-  .rule{height:1px;background:var(--rule);border:0;margin:0}
   .rule-short{width:64px;height:2px;background:var(--rouge);border:0;margin:30px 0}
 
   p{margin-bottom:18px}
@@ -200,13 +219,12 @@
     font-family:'Fraunces';font-weight:500;font-size:1.4rem;
     color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;
   }
-  .belief h3 .marker{color:var(--rouge);font-style:italic;margin-right:.4em}
+  .belief h3 .marker{color:var(--accent-on);font-style:italic;margin-right:.4em}
 
   /* ---- VERSE ---- */
   .verse{
     margin:26px 0;padding:8px 0 8px 26px;
-    border-left:2px solid var(--gold);
-    position:relative;
+    border-left:2px solid var(--gold);position:relative;
   }
   .verse .text{
     font-family:'Fraunces';font-style:italic;font-weight:400;
@@ -215,10 +233,11 @@
   .verse .ref{
     display:block;margin-top:12px;font-family:'Spectral';
     font-style:normal;font-size:.85rem;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--rouge);
+    text-transform:uppercase;color:var(--accent-on);
   }
   .verse.feature{
-    border-left:none;text-align:center;padding:40px 20px;margin:46px 0;
+    border-left:none;text-align:center;padding:40px 24px;margin:46px 0;border-radius:16px;
+    background:color-mix(in srgb,var(--accent) 7%, transparent);
   }
   .verse.feature .text{font-size:clamp(1.5rem,4.2vw,2rem);line-height:1.45}
   .verse.feature .text::before{
@@ -231,57 +250,54 @@
   .dropcap::first-letter{
     font-family:'Fraunces';font-weight:500;
     float:left;font-size:4.1rem;line-height:.8;
-    padding:8px 14px 0 0;color:var(--rouge-deep);
+    padding:8px 14px 0 0;color:var(--accent-on);
   }
 
   /* ---- GOSPEL ARC / TIMELINE ---- */
   .arc{margin:36px 0;position:relative;padding-left:30px}
   .arc::before{
     content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
-    background:linear-gradient(var(--gold),var(--rouge),var(--gold));
+    background:linear-gradient(var(--accent-on),color-mix(in srgb,var(--accent) 55%,var(--gold)),var(--accent-on));
   }
   .arc .beat{position:relative;padding:14px 0 26px}
   .arc .beat::before{
     content:"";position:absolute;left:-30px;top:20px;
     width:14px;height:14px;border-radius:50%;
-    background:var(--paper);border:2px solid var(--rouge);
+    background:var(--paper);border:2px solid var(--accent-on);
   }
-  .arc .beat h4{
-    font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--ink);margin-bottom:6px;
-  }
+  .arc .beat h4{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--ink);margin-bottom:6px}
   .arc .beat h4 span{font-style:italic;color:var(--gold);font-size:.85rem;margin-left:.5em;letter-spacing:.05em}
   .arc .beat p{font-size:1rem;color:var(--ink-soft);margin:0;max-width:56ch}
 
   /* ---- SOLA CARD ---- */
   .sola{
-    background:var(--paper-deep);border:1px solid var(--rule);
+    background:var(--paper-deep);border:1px solid var(--rule);border-left:5px solid var(--accent-on);
     padding:34px 30px;margin:34px 0;position:relative;overflow:hidden;
   }
   .sola::before{
     content:attr(data-n);position:absolute;top:-18px;right:14px;
     font-family:'Fraunces';font-weight:300;font-size:7rem;
-    color:rgba(176,132,49,.13);line-height:1;pointer-events:none;
+    color:color-mix(in srgb,var(--accent) 16%, transparent);line-height:1;pointer-events:none;
   }
   .sola .latin{
     font-family:'Fraunces';font-style:italic;font-weight:500;
-    font-size:clamp(1.7rem,5vw,2.3rem);color:var(--rouge-deep);line-height:1.05;
+    font-size:clamp(1.7rem,5vw,2.3rem);color:var(--accent-on);line-height:1.05;
   }
   .sola .gloss{
     display:block;font-family:'Spectral';font-style:italic;font-size:1.05rem;
-    color:var(--gold);margin-top:4px;letter-spacing:.02em;
+    color:color-mix(in srgb,var(--accent) 60%, var(--ink-soft));margin-top:4px;letter-spacing:.02em;
   }
   .sola .body{margin-top:18px;font-size:1.02rem;color:var(--ink);max-width:58ch}
   .sola .practice{
     margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);
     font-size:.96rem;color:var(--ink-soft);
   }
-  .sola .practice b{font-style:italic;font-weight:500;color:var(--rouge-deep)}
+  .sola .practice b{font-style:italic;font-weight:500;color:var(--accent-on)}
 
   /* ---- TWO-COLUMN LEDGER ---- */
   .ledger{
     display:grid;grid-template-columns:1fr 1fr;gap:0;
-    margin:32px 0;border:1px solid var(--rule);
-    background:var(--paper-deep);
+    margin:32px 0;border:1px solid var(--rule);background:var(--paper-deep);
   }
   .ledger .col{padding:26px 24px}
   .ledger .col:first-child{border-right:1px solid var(--rule)}
@@ -292,60 +308,42 @@
   .ledger ul{list-style:none}
   .ledger li{
     font-size:.98rem;line-height:1.5;padding:9px 0 9px 18px;
-    position:relative;border-top:1px solid rgba(216,205,182,.6);
+    position:relative;border-top:1px solid color-mix(in srgb,var(--rule) 60%,transparent);
   }
   .ledger li:first-child{border-top:none}
   .ledger li::before{
     content:"";position:absolute;left:0;top:.95em;
-    width:5px;height:5px;border-radius:50%;background:var(--gold);
+    width:5px;height:5px;border-radius:50%;background:var(--accent-on);
   }
   .ledger li .cite{display:block;font-size:.78rem;color:var(--ink-soft);font-style:italic;margin-top:2px}
 
   /* ---- NUANCE CARD ---- */
-  .nuance{
-    background:var(--paper-deep);border:1px solid var(--rule);
-    padding:26px 28px;margin:28px 0;
-  }
-  .nuance h4{
-    font-family:'Fraunces';font-weight:500;font-size:1.25rem;
-    margin-bottom:6px;color:var(--ink);
-  }
+  .nuance{background:var(--paper-deep);border:1px solid var(--rule);padding:26px 28px;margin:28px 0}
+  .nuance h4{font-family:'Fraunces';font-weight:500;font-size:1.25rem;margin-bottom:6px;color:var(--ink)}
   .nuance .twosides{display:grid;gap:16px;margin-top:14px}
   .nuance .side{font-size:.98rem;line-height:1.55}
-  .nuance .side b{font-style:italic;font-weight:500;color:var(--rouge-deep)}
+  .nuance .side b{font-style:italic;font-weight:500;color:var(--accent-on)}
 
   /* ---- COMPARISON ---- */
   .compare{margin:30px 0}
-  .compare .row{
-    display:grid;grid-template-columns:1fr;gap:0;
-    border-top:1px solid var(--rule);padding:22px 0;
-  }
+  .compare .row{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--rule);padding:22px 0}
   .compare .row:last-child{border-bottom:1px solid var(--rule)}
-  .compare .topic{
-    font-family:'Fraunces';font-weight:500;font-size:1.15rem;
-    color:var(--ink);margin-bottom:14px;
-  }
+  .compare .topic{font-family:'Fraunces';font-weight:500;font-size:1.15rem;color:var(--ink);margin-bottom:14px}
   .compare .views{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .compare .view .tag{
     font-family:'Spectral';font-style:italic;font-size:.82rem;
-    letter-spacing:.06em;color:var(--rouge);display:block;margin-bottom:5px;
+    letter-spacing:.06em;color:var(--accent-on);display:block;margin-bottom:5px;
   }
   .compare .view p{font-size:.95rem;line-height:1.5;margin:0;color:var(--ink-soft)}
-  .shared-note{
-    font-style:italic;color:var(--ink-soft);font-size:1.05rem;
-    max-width:58ch;margin-bottom:8px;
-  }
+  .shared-note{font-style:italic;color:var(--ink-soft);font-size:1.05rem;max-width:58ch;margin-bottom:8px}
 
   /* ---- UNIQUE LIST ---- */
   .reasons{margin:30px 0;counter-reset:r}
-  .reason{
-    display:flex;gap:22px;padding:22px 0;
-    border-top:1px solid var(--rule);align-items:baseline;
-  }
+  .reason{display:flex;gap:22px;padding:22px 0;border-top:1px solid var(--rule);align-items:baseline}
   .reason:last-child{border-bottom:1px solid var(--rule)}
   .reason .rn{
     counter-increment:r;font-family:'Fraunces';font-style:italic;
-    font-size:1.5rem;color:var(--gold);min-width:34px;
+    font-size:1.5rem;color:var(--accent-on);min-width:34px;
   }
   .reason .rn::before{content:counter(r,decimal)}
   .reason .rt h4{font-family:'Fraunces';font-weight:500;font-size:1.2rem;margin-bottom:4px}
@@ -353,65 +351,57 @@
 
   /* ---- GLOSSARY ---- */
   .glossary{margin:30px 0}
-  .glossary dt{
-    font-family:'Fraunces';font-weight:500;font-size:1.18rem;color:var(--rouge-deep);
-    margin-top:22px;
-  }
+  .glossary dt{font-family:'Fraunces';font-weight:500;font-size:1.18rem;color:var(--accent-on);margin-top:22px}
   .glossary dd{font-size:1rem;color:var(--ink-soft);margin:5px 0 0;max-width:60ch;line-height:1.6}
 
   /* ---- INVITATION / CLOSE ---- */
-  .invite{
-    text-align:center;padding:70px 28px 90px;
-    background:var(--paper-deep);
-    border-top:1px solid var(--rule);margin-top:70px;
-  }
-  .invite .eyebrow{
-    font-family:'Spectral';font-style:italic;color:var(--rouge);
-    font-size:1rem;margin-bottom:18px;
-  }
+  .invite{text-align:center;max-width:640px;margin:0 auto;padding:10px 28px 30px}
+  .invite .eyebrow{font-family:'Spectral';font-style:italic;color:var(--rouge);font-size:1rem;margin-bottom:18px}
   .invite h2{
     font-family:'Fraunces';font-weight:400;
-    font-size:clamp(1.8rem,5.5vw,2.8rem);line-height:1.1;
-    max-width:18ch;margin:0 auto 26px;
+    font-size:clamp(1.8rem,5.5vw,2.8rem);line-height:1.1;max-width:18ch;margin:0 auto 26px;
   }
+  .invite h2 em{font-style:italic;color:var(--accent-on)}
   .invite p{max-width:46ch;margin:0 auto 30px;color:var(--ink-soft)}
   .prayer{
     max-width:48ch;margin:30px auto;padding:26px 28px;
-    background:var(--paper);border:1px solid var(--rule);text-align:left;
-    font-style:italic;color:var(--ink);font-size:1.02rem;line-height:1.7;
+    background:var(--paper-deep);border:1px solid var(--rule);border-left:5px solid var(--accent-on);
+    text-align:left;font-style:italic;color:var(--ink);font-size:1.02rem;line-height:1.7;
   }
   .prayer .lbl{
     display:block;font-style:normal;font-family:'Spectral';font-size:.78rem;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--rouge);margin-bottom:14px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--accent-on);margin-bottom:14px;
   }
-  .signoff{
-    font-family:'Fraunces';font-style:italic;font-size:1.25rem;
-    color:var(--rouge-deep);margin-top:40px;
+  .signoff{font-family:'Fraunces';font-style:italic;font-size:1.25rem;color:var(--rouge-deep);margin-top:40px}
+  .colophon{text-align:center;padding:36px 20px 0;font-size:.8rem;color:var(--ink-soft);font-style:italic;letter-spacing:.02em}
+  .colophon button.link{
+    background:none;border:none;color:var(--rouge);font-family:'Spectral';font-style:italic;
+    font-size:.8rem;cursor:pointer;text-decoration:underline;padding:0;
   }
-  .colophon{
-    text-align:center;padding:30px;font-size:.8rem;
-    color:var(--ink-soft);font-style:italic;letter-spacing:.02em;
-  }
-  .colophon a{color:var(--rouge)}
 
-  /* ---- BACK TO TOP ---- */
-  .totop{
-    position:fixed;bottom:22px;right:22px;z-index:90;
-    width:42px;height:42px;border-radius:50%;
-    background:var(--rouge);color:#fff;border:none;cursor:pointer;
-    font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;
-    opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;
-    box-shadow:0 4px 14px rgba(122,44,36,.3);
+  /* ---- PAGER ---- */
+  .pager{
+    position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:110;
+    display:flex;align-items:center;gap:4px;
+    background:var(--nav-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--rule);border-radius:999px;padding:5px 7px;
+    box-shadow:0 6px 24px rgba(0,0,0,.14);max-width:calc(100vw - 28px);
   }
-  .totop.show{opacity:.92;pointer-events:auto}
-  .totop:hover{transform:translateY(-3px);opacity:1}
+  .pager.hidden{display:none}
+  .pager button{
+    background:transparent;border:none;cursor:pointer;font-family:'Spectral';
+    color:var(--ink);font-size:.92rem;padding:9px 16px;border-radius:999px;
+    display:flex;align-items:center;gap:6px;transition:background .2s,color .2s;white-space:nowrap;
+  }
+  .pager button:hover:not(:disabled){background:color-mix(in srgb,var(--rouge) 13%,transparent);color:var(--rouge)}
+  .pager button:disabled{opacity:.3;cursor:default}
+  .pg-count{font-family:'Fraunces';font-style:italic;color:var(--ink-soft);font-size:.85rem;padding:0 6px;min-width:52px;text-align:center;white-space:nowrap}
+  @media (max-width:520px){
+    .pager button .lbl{display:none}
+    .pager button{padding:11px 16px;font-size:1.1rem}
+  }
 
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  @keyframes fade{to{opacity:1}}
-
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
-  .reveal.in{opacity:1;transform:none}
 
   @media (max-width:600px){
     body{font-size:17px}
@@ -420,39 +410,34 @@
     .compare .views{grid-template-columns:1fr;gap:14px}
     .reason{gap:14px}
     .sola{padding:28px 22px}
+    .page{padding:84px 0 110px}
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
-    .reveal{opacity:1;transform:none}
-    .cover .eyebrow,.cover h1,.ornament,.cover .dedication,.scrollcue{opacity:1}
     html{scroll-behavior:auto}
+    .cover .eyebrow,.cover h1,.ornament,.cover .dedication,.cta{opacity:1}
+    .page.active{animation:none}
   }
 
   /* ---- ACCESSIBILITY & SELECTION ---- */
-  ::selection{background:rgba(158,59,48,.18);color:var(--ink)}
-  a:focus-visible,button:focus-visible{
-    outline:2px solid var(--rouge);outline-offset:3px;border-radius:2px;
-  }
+  ::selection{background:color-mix(in srgb,var(--rouge) 22%,transparent);color:var(--ink)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--rouge);outline-offset:3px;border-radius:4px}
 
-  /* ---- PRINT ---- */
+  /* ---- PRINT: muestra todo de corrido ---- */
   @media print{
-    .topnav,.progress,.totop,.scrollcue,.skip{display:none!important}
+    .topnav,.progress,.pager,.theme-toggle,.skip,.cta{display:none!important}
+    html[data-theme]{--ink:#000;--ink-soft:#333;--paper:#fff;--paper-deep:#fff}
     body{background:#fff;color:#000;font-size:11pt}
-    .reveal{opacity:1!important;transform:none!important}
-    .cover{min-height:auto;padding:0 0 24px}
-    .chapter{padding:18px 0}
-    section[id],header[id]{scroll-margin-top:0}
-    .sola,.nuance,.ledger,.prayer{break-inside:avoid;background:#fff}
-    .verse,.belief,.reason,.arc .beat{break-inside:avoid}
-    a{color:inherit;text-decoration:none}
+    .page{display:block!important;min-height:0;padding:14px 0;animation:none!important}
+    .cover{min-height:0;background:none;padding:0 0 18px}
+    .sola,.nuance,.ledger,.prayer,.verse,.belief,.reason,.arc .beat{break-inside:avoid}
+    a,button{color:inherit}
   }
 </style>
 </head>
 <body>
 
-<a class="skip" href="#contenido">Saltar al contenido</a>
-
-<!-- READING PROGRESS -->
+<a class="skip" href="#indice">Saltar al contenido</a>
 <div class="progress" id="progress" role="presentation"></div>
 
 <!-- TOP NAV -->
@@ -466,14 +451,18 @@
       <a href="#solas">Las Solas</a>
       <a href="#vivir">Cómo se vive</a>
       <a href="#catolicismo">Catolicismo</a>
+      <a href="#unico">Por qué Cristo</a>
       <a href="#glosario">Glosario</a>
       <a href="#invitacion">Invitación</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo oscuro" title="Claro / oscuro">☾</button>
   </div>
 </div>
 
-<!-- COVER -->
-<header class="cover" id="inicio">
+<div class="book" id="book">
+
+<!-- PAGE 0 · PORTADA -->
+<header class="page cover active" id="inicio">
   <span class="eyebrow">una carta sobre lo que creo</span>
   <h1>El corazón<br>de la fe<br><em>cristiana</em></h1>
   <svg class="ornament" viewBox="0 0 140 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -485,30 +474,33 @@
     <circle cx="80" cy="15" r="1.4" fill="#b08431"/>
   </svg>
   <p class="dedication">Para <b>Arleth</b>.<br>Quise reunir en un solo lugar aquello que sostiene mi vida, para poder compartirlo contigo, sin prisa y con cariño.</p>
-  <span class="scrollcue">sigue leyendo</span>
+  <div class="cta">
+    <button class="btn primary" data-go="que-es">Comenzar a leer</button>
+    <button class="btn ghost" data-go="indice">Ver el índice</button>
+  </div>
 </header>
 
-<main id="contenido">
+<!-- PAGE 1 · ÍNDICE -->
+<section class="page" id="indice" aria-label="Índice">
+  <nav class="toc">
+    <h2>Lo que encontrarás aquí</h2>
+    <p class="meta">una lectura pausada · unos 12 minutos</p>
+    <ol>
+      <li><a href="#que-es"><span class="t-title">Qué es ser cristiano</span></a></li>
+      <li><a href="#evangelio"><span class="t-title">El gran relato: el evangelio</span></a></li>
+      <li><a href="#centro"><span class="t-title">Lo que está en el centro</span></a></li>
+      <li><a href="#solas"><span class="t-title">Las Cinco Solas</span></a></li>
+      <li><a href="#vivir"><span class="t-title">Cómo se vive esta fe</span></a></li>
+      <li><a href="#catolicismo"><span class="t-title">Cerca del catolicismo, y distinto</span></a></li>
+      <li><a href="#unico"><span class="t-title">Por qué Cristo lo cambia todo</span></a></li>
+      <li><a href="#glosario"><span class="t-title">Un pequeño glosario</span></a></li>
+      <li><a href="#invitacion"><span class="t-title">Una invitación</span></a></li>
+    </ol>
+  </nav>
+</section>
 
-<!-- ÍNDICE -->
-<nav class="toc reveal" aria-label="Índice">
-  <h2>Lo que encontrarás aquí</h2>
-  <p class="meta">una lectura pausada · unos 12 minutos</p>
-  <ol>
-    <li><a href="#que-es"><span class="t-title">Qué es ser cristiano</span></a></li>
-    <li><a href="#evangelio"><span class="t-title">El gran relato: el evangelio</span></a></li>
-    <li><a href="#centro"><span class="t-title">Lo que está en el centro</span></a></li>
-    <li><a href="#solas"><span class="t-title">Las Cinco Solas</span></a></li>
-    <li><a href="#vivir"><span class="t-title">Cómo se vive esta fe</span></a></li>
-    <li><a href="#catolicismo"><span class="t-title">Cerca del catolicismo, y distinto</span></a></li>
-    <li><a href="#unico"><span class="t-title">Por qué Cristo lo cambia todo</span></a></li>
-    <li><a href="#glosario"><span class="t-title">Un pequeño glosario</span></a></li>
-    <li><a href="#invitacion"><span class="t-title">Una invitación</span></a></li>
-  </ol>
-</nav>
-
-<!-- 0. QUÉ ES SER CRISTIANO -->
-<section class="chapter wrap reveal" id="que-es">
+<!-- PAGE 2 · QUÉ ES SER CRISTIANO -->
+<section class="page chapter wrap" id="que-es" style="--accent:#b5642a">
   <div class="chapter-head">
     <span class="num">para empezar</span>
     <h2>¿Qué es <em>ser cristiano</em>?</h2>
@@ -523,14 +515,13 @@
   </div>
 </section>
 
-<!-- 1. EL EVANGELIO -->
-<section class="chapter wrap reveal" id="evangelio">
+<!-- PAGE 3 · EL EVANGELIO -->
+<section class="page chapter wrap" id="evangelio" style="--accent:#2f7d8a">
   <div class="chapter-head">
     <span class="num">primera parte</span>
     <h2>El gran relato: <em>el evangelio</em></h2>
     <p class="lede">La fe cristiana se entiende mejor como una historia en cuatro momentos. «Evangelio» significa, literalmente, «buena noticia»; y para que una noticia sea buena, primero hay que saber dónde estábamos.</p>
   </div>
-
   <div class="arc">
     <div class="beat">
       <h4>Creación <span>todo comenzó bien</span></h4>
@@ -549,23 +540,20 @@
       <p>La historia no termina en la cruz. Jesús prometió volver y hacer nuevas todas las cosas: un mundo sin lágrimas, sin injusticia ni muerte. El cristiano vive hoy con esa esperanza, sabiendo cómo termina el relato.</p>
     </div>
   </div>
-
   <p class="body">Estas cuatro escenas —creación, ruptura, redención y restauración— son el esqueleto de toda la Biblia. Cuando entiendes esto, el resto encaja: las creencias que vienen a continuación no son ideas sueltas, sino distintas caras de esta misma buena noticia.</p>
-
-  <div class="verse feature reveal">
+  <div class="verse feature">
     <span class="text">De tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree no se pierda, mas tenga vida eterna.</span>
     <span class="ref">Juan 3:16</span>
   </div>
 </section>
 
-<!-- 2. LO QUE ESTÁ EN EL CENTRO -->
-<section class="chapter wrap reveal" id="centro">
+<!-- PAGE 4 · LO QUE ESTÁ EN EL CENTRO -->
+<section class="page chapter wrap" id="centro" style="--accent:#9e3b30">
   <div class="chapter-head">
     <span class="num">segunda parte</span>
     <h2>Lo que está <em>en el centro</em></h2>
     <p class="lede">El cristianismo no comienza con reglas ni con una institución, sino con una persona: Jesús. Todo lo demás nace de ahí. Estas son las creencias que lo sostienen.</p>
   </div>
-
   <div class="belief">
     <h3><span class="marker">i.</span>La Biblia es la voz de Dios</h3>
     <p class="body">Es nuestra guía y autoridad: no un libro de historia cualquiera, sino la manera en que Dios se da a conocer. La leemos no para acumular datos, sino para escuchar a quien la inspiró.</p>
@@ -574,7 +562,6 @@
       <span class="ref">2 Timoteo 3:16</span>
     </div>
   </div>
-
   <div class="belief">
     <h3><span class="marker">ii.</span>La salvación es un regalo</h3>
     <p class="body">No se gana siendo lo bastante bueno. Se recibe confiando en lo que Jesús ya hizo. Eso libera del peso de tener que merecerlo todo, y cambia el miedo por gratitud.</p>
@@ -583,7 +570,6 @@
       <span class="ref">Efesios 2:8–9</span>
     </div>
   </div>
-
   <div class="belief">
     <h3><span class="marker">iii.</span>Jesús es el camino a Dios</h3>
     <p class="body">No uno entre muchos, sino el puente que Dios mismo tendió hacia nosotros. No tuvimos que subir hasta Él; Él bajó hasta nosotros.</p>
@@ -592,7 +578,6 @@
       <span class="ref">Juan 14:6</span>
     </div>
   </div>
-
   <div class="belief">
     <h3><span class="marker">iv.</span>Nacer de nuevo</h3>
     <p class="body">Seguir a Cristo cambia a una persona desde dentro. No es volverse religioso ni más estricto: es empezar de nuevo, recibir una vida nueva que Dios mismo enciende.</p>
@@ -601,24 +586,22 @@
       <span class="ref">Juan 3:3</span>
     </div>
   </div>
-
   <div class="belief">
     <h3><span class="marker">v.</span>Un Dios en tres personas</h3>
     <p class="body">Un solo Dios que se nos revela como Padre, Hijo y Espíritu Santo: cercano, presente y vivo. No tres dioses, ni un solo Dios con tres disfraces, sino un misterio de amor que existe en relación desde siempre.</p>
   </div>
 </section>
 
-<!-- 3. LAS CINCO SOLAS -->
-<section class="chapter wrap reveal" id="solas">
+<!-- PAGE 5 · LAS CINCO SOLAS -->
+<section class="page chapter wrap" id="solas" style="--accent:#6d4f93">
   <div class="chapter-head">
     <span class="num">tercera parte · el corazón de esta carta</span>
     <h2>Las <em>Cinco Solas</em></h2>
     <p class="lede">Hace unos quinientos años, durante la Reforma, muchos cristianos quisieron resumir el evangelio en cinco frases breves en latín. Cada una empieza con la palabra <em>sola</em> —«solo», «solamente»— porque señalan dónde no hay que añadir nada de nuestra parte.</p>
   </div>
-
   <p class="body">No son cinco temas distintos, sino cinco maneras de proteger una misma verdad: que la salvación es enteramente obra de Dios y un regalo suyo. Cada «sola» responde a una pregunta. ¿Quién tiene la última palabra? ¿Cómo se recibe la salvación? ¿Por qué la da Dios? ¿A través de quién? ¿Y para qué, al final de todo? Léelas despacio; juntas dibujan el mapa entero de la fe.</p>
 
-  <div class="sola" data-n="1">
+  <div class="sola" data-n="1" style="--accent:#356a92">
     <span class="latin">Sola Scriptura</span>
     <span class="gloss">Solo la Escritura</span>
     <p class="body">La Biblia es la autoridad final y suficiente para conocer a Dios y saber cómo vivir. Esto no significa despreciar a los buenos maestros, la historia de la Iglesia o la razón; significa que todo eso se somete a la Escritura, y no al revés. Cuando hay duda, la última palabra la tiene la Palabra de Dios, no una costumbre ni una opinión humana.</p>
@@ -629,7 +612,7 @@
     <p class="practice"><b>En la práctica:</b> leemos la Biblia con humildad y la comparamos con todo lo que oímos. Como los de Berea, que «escudriñaban cada día las Escrituras para ver si estas cosas eran así» (Hechos 17:11).</p>
   </div>
 
-  <div class="sola" data-n="2">
+  <div class="sola" data-n="2" style="--accent:#b5642a">
     <span class="latin">Sola Fide</span>
     <span class="gloss">Solo la fe</span>
     <p class="body">Somos declarados justos delante de Dios solo por la fe, es decir, por confiar en Jesús, y no por la suma de nuestras buenas obras. Esto no quiere decir que las obras no importen —importan, y mucho—, sino que llegan <em>después</em>, como fruto del agradecimiento, no <em>antes</em>, como precio de entrada. La fe es la mano vacía que recibe el regalo.</p>
@@ -640,7 +623,7 @@
     <p class="practice"><b>En la práctica:</b> dejamos de medir nuestro valor por lo bien que nos portamos esta semana. Descansamos en lo que Cristo hizo, y desde esa paz amamos y servimos.</p>
   </div>
 
-  <div class="sola" data-n="3">
+  <div class="sola" data-n="3" style="--accent:#5a8a44">
     <span class="latin">Sola Gratia</span>
     <span class="gloss">Solo la gracia</span>
     <p class="body">«Gracia» es un favor que no se merece. Si la fe es la mano que recibe, la gracia es el motivo por el que hay algo para recibir. Dios no nos salva porque éramos atractivos, útiles o suficientemente buenos, sino por pura bondad suya. Nada empezó en nosotros: hasta el deseo de buscarle es ya un regalo de Él.</p>
@@ -651,7 +634,7 @@
     <p class="practice"><b>En la práctica:</b> desaparece el orgullo («yo me lo gané») y también la desesperación («no soy suficiente»). Ambos sobran cuando todo es regalo.</p>
   </div>
 
-  <div class="sola" data-n="4">
+  <div class="sola" data-n="4" style="--accent:#9e3b30">
     <span class="latin">Solus Christus</span>
     <span class="gloss">Solo Cristo</span>
     <p class="body">Hay un único puente entre Dios y nosotros, y es Jesús. No nos salva sumándole a Cristo otros méritos, intermediarios o rituales: su obra en la cruz fue completa y suficiente. No necesita ser repetida ni completada. Lo que Él hizo, lo hizo «una vez para siempre».</p>
@@ -662,7 +645,7 @@
     <p class="practice"><b>En la práctica:</b> oramos con confianza directamente a Dios por medio de Jesús, sabiendo que el acceso ya está abierto y no depende de nuestra perfección.</p>
   </div>
 
-  <div class="sola" data-n="5">
+  <div class="sola" data-n="5" style="--accent:#a8742a">
     <span class="latin">Soli Deo Gloria</span>
     <span class="gloss">Solo a Dios la gloria</span>
     <p class="body">Si la salvación es por gracia, mediante la fe, solo en Cristo y según la Escritura, entonces el mérito no es nuestro: toda la gloria le pertenece a Dios. Esta última «sola» recoge a las otras cuatro. Y va más allá de la salvación: abarca la vida entera. Comer, trabajar, amar, descansar… todo puede hacerse «para la gloria de Dios».</p>
@@ -676,14 +659,13 @@
   <p class="body">Fíjate cómo encajan, como eslabones de una sola cadena: <em>la Escritura</em> nos dice que somos salvos por <em>la fe</em>, que recibe <em>la gracia</em>, que se nos da solo en <em>Cristo</em>, todo ello <em>para la gloria de Dios</em>. Quita una y las demás se tambalean. Juntas, son el evangelio en cinco palabras.</p>
 </section>
 
-<!-- 4. CÓMO SE VIVE -->
-<section class="chapter wrap reveal" id="vivir">
+<!-- PAGE 6 · CÓMO SE VIVE -->
+<section class="page chapter wrap" id="vivir" style="--accent:#5a8a44">
   <div class="chapter-head">
     <span class="num">cuarta parte</span>
     <h2>Cómo se vive <em>esta fe</em></h2>
     <p class="lede">Vivir bien no es una lista para ganarse el cielo: es la respuesta natural de quien se sabe amado. Aun así, la Biblia da una dirección clara.</p>
   </div>
-
   <div class="ledger">
     <div class="col">
       <h4>Hacia lo que se camina</h4>
@@ -706,9 +688,7 @@
       </ul>
     </div>
   </div>
-
   <p class="body" style="margin-top:28px">Hay también costumbres concretas sobre las que los cristianos sinceros no siempre coinciden. Vale la pena mirarlas con honestidad, mostrando las dos lecturas.</p>
-
   <div class="nuance">
     <h4>Sobre comer sangre de animales</h4>
     <div class="twosides">
@@ -716,7 +696,6 @@
       <p class="side"><b>Otros entienden</b> que aquella indicación buscaba la sana convivencia entre creyentes de orígenes distintos en esa época, más que una prohibición permanente.</p>
     </div>
   </div>
-
   <div class="nuance">
     <h4>Sobre los tatuajes</h4>
     <div class="twosides">
@@ -724,26 +703,20 @@
       <p class="side"><b>Otros señalan</b> que esa ley estaba ligada a ritos paganos de aquel tiempo, y que cuenta más el corazón que lo externo. Suele dejarse a la conciencia de cada quien.</p>
     </div>
   </div>
-
   <p class="body" style="margin-top:28px">En todos estos casos vale un principio antiguo y sabio: en lo esencial, unidad; en lo dudoso, libertad; y en todo, amor. Lo importante nunca es ganar la discusión, sino caminar con humildad.</p>
-</section>
-
-<!-- FEATURE VERSE -->
-<section class="wrap">
-  <div class="verse feature reveal">
+  <div class="verse feature">
     <span class="text">Cuidaos de cumplir vuestra justicia delante de los hombres para ser vistos de ellos. El amor verdadero no busca aplauso.</span>
     <span class="ref">a partir de Mateo 6:1</span>
   </div>
 </section>
 
-<!-- 5. DIFERENCIAS CON EL CATOLICISMO -->
-<section class="chapter wrap reveal" id="catolicismo">
+<!-- PAGE 7 · CATOLICISMO -->
+<section class="page chapter wrap" id="catolicismo" style="--accent:#356a92">
   <div class="chapter-head">
     <span class="num">quinta parte</span>
     <h2>Cerca del <em>catolicismo</em>, y a la vez distinto</h2>
   </div>
   <p class="shared-note">Comparten más de lo que separa: ambos creen en Dios, en Jesús como Salvador, en la Trinidad y en la Biblia. Las diferencias están sobre todo en la autoridad, la salvación y la práctica —y, como verás, es justo ahí donde las Cinco Solas marcan el contraste. Aquí, con respeto para ambos lados.</p>
-
   <div class="compare">
     <div class="row">
       <div class="topic">¿Dónde está la autoridad?</div>
@@ -781,21 +754,19 @@
       </div>
     </div>
   </div>
-
   <div class="verse">
     <span class="text">Hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre.</span>
     <span class="ref">1 Timoteo 2:5</span>
   </div>
 </section>
 
-<!-- 6. POR QUÉ CRISTO ES ÚNICO -->
-<section class="chapter wrap reveal" id="unico">
+<!-- PAGE 8 · POR QUÉ CRISTO ES ÚNICO -->
+<section class="page chapter wrap" id="unico" style="--accent:#a8742a">
   <div class="chapter-head">
     <span class="num">sexta parte</span>
     <h2>Por qué <em>Cristo</em> lo cambia todo</h2>
     <p class="lede">Más allá de cualquier tradición, lo que hace única a esta fe es Él mismo.</p>
   </div>
-
   <div class="reasons">
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Es una relación, no un esfuerzo</h4><p>No se trata de ganar el favor de Dios, sino de recibir su amor.</p></div></div>
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Dios se acercó primero</h4><p>En Cristo, Dios mismo vino a vivir entre nosotros, y conoció el dolor humano por dentro.</p></div></div>
@@ -803,15 +774,14 @@
     <div class="reason"><span class="rn"></span><div class="rt"><h4>La vida eterna es certeza</h4><p>No un premio incierto al final, sino una promesa presente.</p></div></div>
     <div class="reason"><span class="rn"></span><div class="rt"><h4>Resucitó</h4><p>Toda la fe descansa en algo concreto: Jesús venció a la muerte.</p></div></div>
   </div>
-
-  <div class="verse feature reveal">
+  <div class="verse feature">
     <span class="text">Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá.</span>
     <span class="ref">Juan 11:25</span>
   </div>
 </section>
 
-<!-- 7. GLOSARIO -->
-<section class="chapter wrap reveal" id="glosario">
+<!-- PAGE 9 · GLOSARIO -->
+<section class="page chapter wrap" id="glosario" style="--accent:#8a527a">
   <div class="chapter-head">
     <span class="num">séptima parte</span>
     <h2>Un pequeño <em>glosario</em></h2>
@@ -841,86 +811,112 @@
   </dl>
 </section>
 
-</main>
-
-<!-- INVITATION -->
-<section class="invite reveal" id="invitacion">
-  <p class="eyebrow">y al final, una sola pregunta</p>
-  <h2>¿Te gustaría conocer a Jesús de manera personal?</h2>
-  <p>No hace falta ser perfecta ni tener todas las respuestas. Basta un corazón abierto. Y orar puede ser tan sencillo como hablar con alguien que ya te ama:</p>
-
-  <div class="prayer">
-    <span class="lbl">una oración, con tus propias palabras</span>
-    Jesús, sé que no puedo salvarme sola, y creo que tú viniste a buscarme. Gracias por amarme antes de que yo lo supiera. Perdona lo que he hecho mal, entra en mi vida y enséñame a caminar contigo. Confío en ti. Amén.
+<!-- PAGE 10 · INVITACIÓN -->
+<section class="page" id="invitacion" style="--accent:#9e3b30">
+  <div class="invite">
+    <p class="eyebrow">y al final, una sola pregunta</p>
+    <h2>¿Te gustaría conocer a <em>Jesús</em> de manera personal?</h2>
+    <p>No hace falta ser perfecta ni tener todas las respuestas. Basta un corazón abierto. Y orar puede ser tan sencillo como hablar con alguien que ya te ama:</p>
+    <div class="prayer">
+      <span class="lbl">una oración, con tus propias palabras</span>
+      Jesús, sé que no puedo salvarme sola, y creo que tú viniste a buscarme. Gracias por amarme antes de que yo lo supiera. Perdona lo que he hecho mal, entra en mi vida y enséñame a caminar contigo. Confío en ti. Amén.
+    </div>
+    <hr class="rule-short" style="margin-left:auto;margin-right:auto">
+    <div class="verse" style="border-left:none;display:inline-block;text-align:center;max-width:46ch">
+      <span class="text">He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él.</span>
+      <span class="ref">Apocalipsis 3:20</span>
+    </div>
+    <p class="signoff">Con cariño, para ti, Arleth.</p>
+    <div class="colophon">
+      Citas según la versión Reina-Valera 1960.<br>
+      Hecho a mano, con cariño · <button class="link" data-go="inicio">volver al inicio</button>
+    </div>
   </div>
-
-  <hr class="rule-short" style="margin-left:auto;margin-right:auto">
-  <div class="verse" style="border-left:none;display:inline-block;text-align:center;max-width:46ch">
-    <span class="text">He aquí, yo estoy a la puerta y llamo; si alguno oye mi voz y abre la puerta, entraré a él.</span>
-    <span class="ref">Apocalipsis 3:20</span>
-  </div>
-  <p class="signoff">Con cariño, para ti, Arleth.</p>
 </section>
 
-<div class="colophon">
-  Citas según la versión Reina-Valera 1960.<br>
-  Hecho a mano, con cariño · <a href="#inicio">volver al inicio</a>
+</div><!-- /book -->
+
+<!-- PAGER -->
+<div class="pager" id="pager">
+  <button id="pgPrev" aria-label="Página anterior">‹ <span class="lbl">Anterior</span></button>
+  <span class="pg-count" id="pgCount">1 / 11</span>
+  <button id="pgNext" aria-label="Página siguiente"><span class="lbl">Siguiente</span> ›</button>
 </div>
 
-<button class="totop" id="totop" aria-label="Volver arriba" title="Volver arriba">↑</button>
-
 <script>
-  // Reveal on scroll
-  const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-  // Show top nav + back-to-top after leaving the cover
+(function(){
+  const order=['inicio','indice','que-es','evangelio','centro','solas','vivir','catolicismo','unico','glosario','invitacion'];
+  const pages=order.map(id=>document.getElementById(id));
   const topnav=document.getElementById('topnav');
-  const totop=document.getElementById('totop');
-  const cover=document.getElementById('inicio');
-  const coverWatch=new IntersectionObserver((es)=>{
-    es.forEach(e=>{
-      const past=!e.isIntersecting;
-      topnav.classList.toggle('show',past);
-      totop.classList.toggle('show',past);
-    });
-  },{threshold:.1});
-  coverWatch.observe(cover);
-
-  totop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-  // Reading progress bar
+  const pager=document.getElementById('pager');
+  const pgPrev=document.getElementById('pgPrev');
+  const pgNext=document.getElementById('pgNext');
+  const pgCount=document.getElementById('pgCount');
   const bar=document.getElementById('progress');
-  let ticking=false;
-  function updateProgress(){
-    const doc=document.documentElement;
-    const scrollable=doc.scrollHeight-doc.clientHeight;
-    const pct=scrollable>0?(doc.scrollTop/scrollable)*100:0;
-    bar.style.width=pct+'%';
-    ticking=false;
-  }
-  window.addEventListener('scroll',()=>{
-    if(!ticking){requestAnimationFrame(updateProgress);ticking=true;}
-  },{passive:true});
-  updateProgress();
+  const navLinks=Array.prototype.slice.call(document.querySelectorAll('.topnav nav a'));
+  let current=0;
 
-  // Scroll-spy: highlight the section currently in view
-  const navLinks=Array.from(document.querySelectorAll('.topnav nav a'));
-  const linkFor={};
-  navLinks.forEach(a=>{linkFor[a.getAttribute('href').slice(1)]=a;});
-  const spied=Object.keys(linkFor).map(id=>document.getElementById(id)).filter(Boolean);
-  const spy=new IntersectionObserver((es)=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        navLinks.forEach(a=>a.classList.remove('active'));
-        const a=linkFor[e.target.id];
-        if(a)a.classList.add('active');
-      }
-    });
-  },{rootMargin:'-45% 0px -50% 0px'});
-  spied.forEach(s=>spy.observe(s));
+  function render(id){
+    let i=order.indexOf(id); if(i<0)i=0;
+    current=i;
+    pages.forEach(function(p,k){ if(p) p.classList.toggle('active',k===i); });
+    navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+order[i]); });
+    pgCount.textContent=(i+1)+' / '+order.length;
+    pgPrev.disabled=(i===0);
+    pgNext.disabled=(i===order.length-1);
+    const onCover=(i===0);
+    topnav.classList.toggle('on-cover',onCover);
+    pager.classList.toggle('hidden',onCover);
+    bar.style.width=(order.length>1?(i/(order.length-1))*100:0)+'%';
+    window.scrollTo({top:0,behavior:'auto'});
+  }
+  function go(id){
+    if(('#'+id)===location.hash){ render(id); } else { location.hash=id; }
+  }
+  function step(d){
+    const ni=Math.min(order.length-1,Math.max(0,current+d));
+    go(order[ni]);
+  }
+
+  window.addEventListener('hashchange',function(){ render((location.hash||'').slice(1)||'inicio'); });
+  pgPrev.addEventListener('click',function(){ step(-1); });
+  pgNext.addEventListener('click',function(){ step(1); });
+  Array.prototype.slice.call(document.querySelectorAll('[data-go]')).forEach(function(b){
+    b.addEventListener('click',function(){ go(b.getAttribute('data-go')); });
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    const tag=(e.target&&e.target.tagName||'').toLowerCase();
+    if(tag==='input'||tag==='textarea') return;
+    if(e.key==='ArrowRight'){ step(1); }
+    else if(e.key==='ArrowLeft'){ step(-1); }
+  });
+
+  let tsx=0,tsy=0;
+  document.addEventListener('touchstart',function(e){ const t=e.changedTouches[0]; tsx=t.clientX; tsy=t.clientY; },{passive:true});
+  document.addEventListener('touchend',function(e){
+    const t=e.changedTouches[0]; const dx=t.clientX-tsx, dy=t.clientY-tsy;
+    if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.5){ step(dx<0?1:-1); }
+  },{passive:true});
+
+  // ---- Theme toggle (claro / oscuro) ----
+  const themeBtn=document.getElementById('themeToggle');
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme',t);
+    try{ localStorage.setItem('tema-fe',t); }catch(e){}
+    themeBtn.textContent=(t==='dark')?'☀':'☾';
+    themeBtn.setAttribute('aria-label',(t==='dark')?'Cambiar a modo claro':'Cambiar a modo oscuro');
+  }
+  themeBtn.addEventListener('click',function(){
+    const cur=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
+    setTheme(cur==='dark'?'light':'dark');
+  });
+  (function(){ const t=(document.documentElement.getAttribute('data-theme')==='dark')?'dark':'light';
+    themeBtn.textContent=(t==='dark')?'☀':'☾'; })();
+
+  render((location.hash||'').slice(1)||'inicio');
+})();
 </script>
 </body>
 </html>
