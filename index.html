@@ -101,7 +101,7 @@
     font-family:'Fraunces';font-style:italic;font-size:1rem;color:var(--rouge-deep);
     white-space:nowrap;text-decoration:none;flex:none;
   }
-  .topnav nav{display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;flex:1}
+  .topnav nav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;flex:1;justify-content:center}
   .topnav nav::-webkit-scrollbar{display:none}
   .topnav nav a{
     font-family:'Spectral';font-size:.82rem;letter-spacing:.04em;
@@ -143,9 +143,10 @@
 
   /* ---- PAGE / BOOK ---- */
   .page{display:none;padding:114px 0 210px;min-height:100vh}
-  .page.active{display:block;animation:pageIn .5s ease}
+  .page.active{display:block}
   .page.cover.active{display:flex}
-  @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  /* cada hijo de la página activa aparece en secuencia (se aplica desde JS) */
+  .page.is-entering > *{opacity:0}
 
   /* ---- COVER ---- */
   .cover{
@@ -217,7 +218,7 @@
 
   /* ---- SECTION SCAFFOLD ---- */
   .chapter{padding:0}
-  .chapter-head{margin-bottom:42px}
+  .chapter-head{margin-bottom:54px}
   .motif{
     display:block;width:46px;height:46px;color:var(--accent-on);margin-bottom:20px;
     stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
@@ -240,9 +241,9 @@
   .lede{font-size:1.12rem;color:var(--ink-soft);margin-top:18px;max-width:56ch}
   .rule-short{width:64px;height:2px;background:var(--rouge);border:0;margin:30px 0}
 
-  p{margin-bottom:18px}
-  p.body{max-width:60ch}
-  .belief{margin:34px 0}
+  p{margin-bottom:20px}
+  p.body{max-width:62ch}
+  .belief{margin:46px 0}
   .belief h3{
     font-family:'Fraunces';font-weight:500;font-size:1.4rem;
     color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;
@@ -256,7 +257,7 @@
 
   /* ---- VERSE ---- */
   .verse{
-    margin:26px 0;padding:8px 0 8px 26px;
+    margin:32px 0;padding:8px 0 8px 26px;
     border-left:2px solid var(--gold);position:relative;
   }
   .verse .text{
@@ -1005,6 +1006,23 @@
   var mainnav=document.getElementById('mainnav');
   var current=0;
 
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function stagger(page, idx){
+    var kids=page.children, n=kids.length, k;
+    if(reduceMotion || idx===0){
+      page.classList.remove('is-entering');
+      for(k=0;k<n;k++){ kids[k].style.animation=''; kids[k].style.opacity=''; }
+      return;
+    }
+    page.classList.add('is-entering');
+    for(k=0;k<n;k++){ kids[k].style.animation='none'; }
+    void page.offsetWidth; // reinicia la animación
+    for(k=0;k<n;k++){
+      kids[k].style.animation='rise .6s ease both';
+      kids[k].style.animationDelay=Math.min(k*0.07, 0.7)+'s';
+    }
+  }
+
   function closeMenu(){ mainnav.classList.remove('open'); navToggle.setAttribute('aria-expanded','false'); }
   navToggle.addEventListener('click',function(){
     var open=mainnav.classList.toggle('open');
@@ -1025,6 +1043,7 @@
     pager.classList.toggle('hidden',onCover);
     bar.style.width=(order.length>1?(i/(order.length-1))*100:0)+'%';
     window.scrollTo({top:0,behavior:'auto'});
+    stagger(pages[i], i);
   }
   function go(id){
     if(('#'+id)===location.hash){ render(id); } else { location.hash=id; }
